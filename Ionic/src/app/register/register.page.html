@@ -1,0 +1,47 @@
+
+
+
+<ion-toolbar>
+  <div class="titulo"> <ion-title>MinervaBlog</ion-title></div>
+  </ion-toolbar>
+<ion-content>
+  <ion-text>
+    <p class="subTitulo">Primeiro, precisamos que preencha os seguintes campos</p>
+  </ion-text>
+    
+    <form [formGroup]= "registerForm" (ngSubmit)="submitForm(registerForm)" >
+
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nome completo</ion-label>
+        <ion-input type="text" formControlName="name" ></ion-input>
+      </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" formControlName="email" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Usuário</ion-label>
+            <ion-input type="text" formControlName="username" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Senha</ion-label>
+            <ion-input type="password" formControlName="password" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Confirme sua senha</ion-label>
+            <ion-input type="password" formControlName="c_password" ></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-button type="submit" shape="round" [disabled]="registerForm.invalid" routerLinkActive="active"> Continuar </ion-button>
+    </ion-row>
+  </form>
+
+</ion-content>
+

@@ -1,0 +1,31 @@
+<ion-toolbar>
+  <div class="titulo"> <ion-title>MinervaBlog</ion-title></div>
+  </ion-toolbar>
+<ion-content>
+  <ion-text>
+    <p class="subTitulo">Se quiser, nos deixe conhecer mais sobre você</p>
+  </ion-text>
+
+
+  <form [formGroup]= "registerOpForm" (ngSubmit)="submitForm(registerOpForm)" >
+    <img src="{{myPhoto}}"  >
+
+    <ion-row class="ion-justify-content-center" > 
+      <ion-button (click)="openGallery()"  shape="round" >Abrir galeria</ion-button>
+    </ion-row>
+    <ion-list>
+      <ion-item>
+        <ion-label>Data de nascimento</ion-label>
+        <ion-datetime value="1990-02-19" placeholder="Select Date" formControlName="date"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+         <ion-label position="floating">CEP</ion-label>
+          <ion-input type="number" formControlName="cep" ></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-row class="ion-justify-content-center">
+        <ion-button type="submit" shape="round" >Cadastrar</ion-button>
+      </ion-row>
+  </form>
+</ion-content>
