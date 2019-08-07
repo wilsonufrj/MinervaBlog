@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { FeedPage } from './feed.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
