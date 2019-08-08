@@ -10,6 +10,10 @@ class PostController extends Controller
 
     //Criar um post (Somente para o Blogger)**Falta Atualizar
     public function createPost(Request $request){
+
+        if(!Storage::exists('PostPhotos/'))
+            Storage::makeDirectory('PostPhotos/',0775,true);
+
         $post = new Post;
 
         $post->conteudo = $request->conteudo;
