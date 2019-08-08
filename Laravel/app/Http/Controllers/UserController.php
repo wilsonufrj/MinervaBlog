@@ -23,10 +23,11 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->password = $request->password;
         //Salvando a foto
-        $file = $request->file('photos');
-        $filename = $user->name.".".$file->getClientOriginalExtension();
-        $path = $file->storeAs('UserPhotos',$filename);
-        $user->photos = $file;
+        $image = base64_decode($request->photos);
+        $imgName = uniqid().'.png';
+        $path = storage_path('app/UserPhotos/'.$imgName);
+        file_put_contents($path,$image);
+        $user->photos= $imgName;
 
         $user->save();
 
