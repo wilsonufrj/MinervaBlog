@@ -26,8 +26,15 @@ class PostController extends Controller
 
     //Procurar um unico Post(Todos)
     public function showPost($id){
+
         $post = Post::findOrFail($id);
-        return $post;
+
+        if($post){
+            return response()->success($post);
+        }else{
+            $data = "Post nao encontrado,verifique o id novamente";
+            return response()->error($data,400);
+        }
     }
 
     //Atualizar um Post (Somente para o Blogger)**Falta atualizar
