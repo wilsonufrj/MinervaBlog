@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Storage;
 use App\User;
 
 class UserController extends Controller
 {
     public function createUser(UserRequest $request){
+
+        if(!Storage::exists('UserPhotos/'))
+            Storage::makeDirectory('UserPhotos/',0775,true);
+
         $user = new User;
 
         $user->name = $request->name;
@@ -17,6 +22,12 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->username = $request->username;
         $user->password = $request->password;
+        //Salvando a foto
+        $file = $request->file('photos');
+        $filename = $user->name.".".$file->getClientOriginalExtension();
+        $path = $file->storeAs('UserPhotos',$filename);
+        $user->photos = $file;
+
         $user->save();
 
         return response()->json([$user]);
