@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use App\User;
 
 class UserController extends Controller
 {
-    public function createUser(Request $request){
+    public function createUser(UserRequest $request){
         $user = new User;
 
         $user->name = $request->name;
         $user->CEP = $request->CEP;
-        $user->age = $request->age;
+        $user->birthday = $request->birthday;
         $user->email = $request->email;
         $user->username = $request->username;
         $user->password = $request->password;
@@ -30,7 +31,7 @@ class UserController extends Controller
         return $user;
     }
 
-    public function updateUser(Request $request, $id){
+    public function updateUser(UserRequest $request, $id){
 
         $user = User::findOrFail($id);
         
