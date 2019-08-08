@@ -29,8 +29,8 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
 
-        if($aula){
-            return response()->success($aula);
+        if($post){
+            return response()->success($post);
         }else{
             $data = "Post nao encontrado,verifique o id novamente";
             return response()->error($data,400);
