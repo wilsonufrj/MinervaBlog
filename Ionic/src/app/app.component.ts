@@ -22,10 +22,11 @@ export class AppComponent {
       icon: 'list'
     },
      {
-      title: 'Register',
+      title: 'Cadastro',
       url: '/register',
-      icon: 'star'
+      icon: 'md-person'
     }
+    
 
   ];
 

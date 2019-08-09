@@ -3,6 +3,7 @@ import{Camera, CameraOptions} from '@ionic-native/camera/ngx';
 import{FormGroup ,FormBuilder,Validators} from '@angular/forms';
 import {AlertController} from '@ionic/angular';
 import {Router} from '@angular/router';
+import { UsersService } from '../services/users.service';
 
 
 @Component({
@@ -14,19 +15,36 @@ export class RegisterOptionalPage implements OnInit {
   myPhoto;
   registerOpForm: FormGroup;
 
-  constructor(private camera:Camera, public formbuilder:FormBuilder, public alertController:AlertController, private router: Router ) {
+  constructor(private camera:Camera, public formbuilder:FormBuilder, public alertController:AlertController, private router: Router, public usersService: UsersService  ) {
   this.registerOpForm= this.formbuilder.group({
-       image:[this.myPhoto],
+       photos:[this.myPhoto],
        date:[null],
-       cep: [null,[Validators.required,Validators.minLength(8)]],
+       CEP: [null,[Validators.required,Validators.minLength(8)]],
      });
    }
 
-   submitForm(form){
-    console.log(form);
-    this.alerta();
+    submitForm(form){
+     console.log(form);
+     this.alerta();
 
-  }
+   }
+
+  // registrarUsuario( form ) {
+
+    
+  //   if ( form.status == "VALID" ) {
+  //       console.log(form);
+  //    //Mandaremos a requisição para a API
+  //     this.usersService.registrarUsuario( form.value ).subscribe(
+  //         ( res ) => {
+  //       console.log( res );
+  //       this.alerta();
+  //        }
+  //       );
+  
+  //     }
+  
+  // }
 
   async alerta(){
     const alert= await this.alertController.create(
@@ -93,6 +111,7 @@ export class RegisterOptionalPage implements OnInit {
  
 
   ngOnInit() {
+    this.myPhoto='/assets/user.png';
   }
 
 }

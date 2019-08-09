@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { HttpModule } from '@angular/http'
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -20,6 +20,6 @@ export class UsersService {
   constructor( public http: HttpClient) { }
 
   registrarUsuario( form ): Observable<any> {
-  	return this.http.post( this.apiUrl + 'register', form, this.httpHeaders );
+  	return this.http.post( this.apiUrl + 'createUser', form, this.httpHeaders );
   }
 }
