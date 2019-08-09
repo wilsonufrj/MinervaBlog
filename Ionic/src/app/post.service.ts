@@ -9,9 +9,16 @@ export class PostService {
   backendURL:string = "localhost:8000/api/";
   constructor(private http: HttpClient) {}
 
+  httpHeaders: any = {
+  	headers: {
+  		'Content-Type': 'application/json',
+  		'Accept': 'application/json'
+  	}
+}
+
   public getPosts():Observable<any>{
     return this.http.get(
-      this.backendURL+'post');
+      this.backendURL+'listPost',this.httpHeaders);
   }
   public getPost(id):Observable<any>{
     return this.http.get(

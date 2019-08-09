@@ -16,12 +16,13 @@ export class FeedPage {
   getPosts(): void{
     this.postService.getPosts().subscribe(
       (res) => {
+        console.log(res);
         this.posts = res;
       },
       (error) => {
         console.log(error);
       }
-    )
+    );
   }
   ngOnInit(){
     this.getPosts();
