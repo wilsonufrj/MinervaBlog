@@ -9,14 +9,15 @@ import { Router } from "@angular/router";
   styleUrls: ['feed.page.scss'],
 })
 export class FeedPage {
-
-  posts=[{
-    id:1,
-    title:'Hellowwww',
-    text:'texteofjpqwje qwpeo jqwp eojwq pe pojpojewqe jpqoejwqpojepqwoej wpqoejqwpoejqpwoje pojqwpeojqwe',
-    image:"../../assets/img.jpeg",
-    date:"28 de Agosto de 1999",
-  }];
+  posts;
+  //bloco apenas para testar sem o back
+  // posts=[{
+  //   id:1,
+  //   title:'Hellowwww',
+  //   text:'texteofjpqwje qwpeo jqwp eojwq pe pojpojewqe jpqoejwqpojepqwoej wpqoejqwpoejqpwoje pojqwpeojqwe',
+  //   image:"../../assets/img.jpeg",
+  //   date:"28 de Agosto de 1999",
+  // }];
   cardTextLength=200; //set the max length of the preview text on the card
   constructor(public postService: PostService, private router: Router) {}
 
@@ -36,7 +37,7 @@ export class FeedPage {
     this.router.navigate([`post/${id}`])
   }
   ngOnInit(){
-    // this.getPosts();
+    this.getPosts();
   }
 
 }
