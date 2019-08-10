@@ -22,6 +22,6 @@ export class PostService {
   }
   public getPost(id):Observable<any>{
     return this.http.get(
-      this.backendURL+'post'+id);
+      this.backendURL+'post'+id,this.httpHeaders);
   }
 }
