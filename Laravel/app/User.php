@@ -37,4 +37,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //relação n-n que representa os likes
+    public function users(){
+        return $this->belongsToMany('App\Comment');
+    }
 }
