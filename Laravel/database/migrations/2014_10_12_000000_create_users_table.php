@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('CEP')->nullable();
-            $table->string('age');
+            $table->string('birthday');
             $table->string('email');
             $table->string('username');
             $table->string('password');

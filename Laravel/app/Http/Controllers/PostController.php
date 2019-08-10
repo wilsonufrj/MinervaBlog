@@ -10,6 +10,10 @@ class PostController extends Controller
 
     //Criar um post (Somente para o Blogger)**Falta Atualizar
     public function createPost(Request $request){
+
+        if(!Storage::exists('PostPhotos/'))
+            Storage::makeDirectory('PostPhotos/',0775,true);
+
         $post = new Post;
 
         $post->conteudo = $request->conteudo;
@@ -26,8 +30,15 @@ class PostController extends Controller
 
     //Procurar um unico Post(Todos)
     public function showPost($id){
+
         $post = Post::findOrFail($id);
-        return $post;
+
+        if($post){
+            return response()->success($post);
+        }else{
+            $data = "Post nao encontrado,verifique o id novamente";
+            return response()->error($data,400);
+        }
     }
 
     //Atualizar um Post (Somente para o Blogger)**Falta atualizar

@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder
         App\User::create([
             'name'=>'Wilson',
             'CEP'=>'12345678',
-            'age'=>'22',
+            'birthday'=>'12/3/1997',
             'email'=>'waramos97@gmail.com',
             'username'=>'wilsao',
             'password'=>'123456',
@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
         App\User::create([
             'name'=>'Polyana',
             'CEP'=>'12345678',
-            'age'=>'18',
+            'birthday'=>'3/5/2000',
             'email'=>'polyana@gmail.com',
             'username'=>'wilsao',
             'password'=>'123456',
@@ -34,7 +34,7 @@ class UserTableSeeder extends Seeder
         App\User::create([
             'name'=>'Breno',
             'CEP'=>'12345678',
-            'age'=>'20',
+            'birthday'=>'2/7/2001',
             'email'=>'breno@gmail.com',
             'username'=>'wilsao',
             'password'=>'123456',
@@ -42,6 +42,6 @@ class UserTableSeeder extends Seeder
         ]);
 
         
-        factory(App\User::class,20)->create();
+        factory(App\User::class,10)->create();
     }
 }
