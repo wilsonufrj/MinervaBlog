@@ -33,7 +33,8 @@ class UserRequest extends FormRequest
                 'birthday'=>'required|data',
                 'email' => 'required|email',
                 'username' => 'required|alpha',
-                'password' => 'required|alpha-num'
+                'password' => 'required|alpha-num',
+                'photos'=>'required|file|image|mimes:jpeg,png,gif,webp|max:2048',
             ];
         }
         //Formato da data DD/MM/YYYY
@@ -44,7 +45,8 @@ class UserRequest extends FormRequest
                 'birthday'=>'required|data',
                 'email' => 'required|email',
                 'username' => 'required|alpha',
-                'password' => 'required|alpha-num'
+                'password' => 'required|alpha-num',
+                'photos'=>'required|file|image|mimes:jpeg,png,gif,webp|max:2048',//*
             ];
         }
     }
