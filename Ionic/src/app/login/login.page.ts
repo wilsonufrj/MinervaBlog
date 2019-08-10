@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import{FormGroup ,FormBuilder,Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {AlertController} from '@ionic/angular';
 // import { UsersService } from '../services/users.service';
 
 @Component({
@@ -11,7 +12,7 @@ import {Router} from '@angular/router';
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
   //declarar  public usersService: UsersService no construtor
-  constructor(public formbuilder:FormBuilder, private router: Router  ) { 
+  constructor(public formbuilder:FormBuilder, private router: Router, public alertController:AlertController  ) { 
     this.loginForm = this.formbuilder.group({
   		username: [null, [Validators.required]],
   		password: [null, [Validators.required, Validators.minLength(8)]],
@@ -24,14 +25,45 @@ export class LoginPage implements OnInit {
   // 		this.userService.logarUsuario( form.value ).subscribe(
   // 			(res) => {
 	// 			console.log( res.message );
-	// 			localStorage.setItem( 'userToken', res.data.token );
-	// 			this.router.navigate(['reservas']);
+  // 			localStorage.setItem( 'userToken', res.data.token );
+  //       this.alerta();
+	// 			
+
   // 			}
   // 		);
 
   // 	}
 
   // }
+  submitForm(form){
+    console.log(form);
+    this.alerta();
+
+  }
+
+
+  async alerta(){
+    const alert= await this.alertController.create(
+      { header:'Login realizado!',
+        message:'Agora vamos navegar',
+        buttons:[
+        {
+         text: 'OK',
+         handler: () => {
+          console.log('Confirm Okay');
+          this.router.navigateByUrl('/home');
+          
+
+          
+        }
+      
+        }
+      ]
+
+     
+      });
+      await alert.present();
+    }
   ngOnInit() {
   }
 

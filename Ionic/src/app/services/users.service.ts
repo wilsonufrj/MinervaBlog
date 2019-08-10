@@ -22,4 +22,22 @@ export class UsersService {
   registrarUsuario( form ): Observable<any> {
   	return this.http.post( this.apiUrl + 'createUser', form, this.httpHeaders );
   }
+
+  logarUsuario( form ): Observable<any> {
+  	return this.http.post( this.apiUrl + 'login', form, this.httpHeaders );
+  }
+
+
+  public atualizarUsuario(form,id):Observable<any> {
+    return this.http.put(
+      this.apiUrl + 'updateUser/' + id, {
+        name: form.name,
+        email: form.email,
+        username: form.username,
+        photos: form.photos,
+        birthday: form.birthday,
+        CEP: form.CEP
+      }, this.httpHeaders);
+  }
+
 }

@@ -11,7 +11,7 @@
         <p class="Titulo">MinervaBlog</p>
     </ion-text>
 
-    <form [formGroup]="loginForm" >
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm)" >
       
         
           <ion-item id="entrada">

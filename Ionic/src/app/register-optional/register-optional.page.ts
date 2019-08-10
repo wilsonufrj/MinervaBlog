@@ -35,7 +35,7 @@ export class RegisterOptionalPage implements OnInit {
   //   if ( form.status == "VALID" ) {
   //       console.log(form);
   //    //Mandaremos a requisição para a API
-  //     this.usersService.registrarUsuario( form.value ).subscribe(
+  //     this.usersService.cadastrarUsuario( form.value ).subscribe(
   //         ( res ) => {
   //       console.log( res );
   //       this.alerta();
