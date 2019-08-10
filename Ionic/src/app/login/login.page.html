@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+    <ion-text>
+        <p class="Titulo">MinervaBlog</p>
+    </ion-text>
+
+    <form [formGroup]="loginForm" >
+      
+        
+          <ion-item id="entrada">
+       
+            <ion-input type="text" placeholder="Usuário" formControlName="username"  ></ion-input>
+          </ion-item>
+    
+            <ion-item id="entrada">
+               
+                <ion-input type="password" placeholder="Senha" formControlName="password"></ion-input>
+            </ion-item>
+          
+          <ion-text>
+              <p  routerLinkActive="active" class="cadastrar"> <a  routerLink="/register">Criar conta</a></p>
+          </ion-text>
+    
+        <ion-row class="ion-justify-content-center">
+          <ion-button type="submit" shape="round"  [disabled]="loginForm.invalid"> Entrar </ion-button>
+        </ion-row>
+      </form>
+
+
+
+</ion-content>
