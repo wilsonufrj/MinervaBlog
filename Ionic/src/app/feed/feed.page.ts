@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PostService } from "../post.service";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -9,9 +10,15 @@ import { PostService } from "../post.service";
 })
 export class FeedPage {
 
-  posts;
+  posts=[{
+    id:1,
+    title:'Hellowwww',
+    text:'texteofjpqwje qwpeo jqwp eojwq pe pojpojewqe jpqoejwqpojepqwoej wpqoejqwpoejqpwoje pojqwpeojqwe',
+    image:"../../assets/img.jpeg",
+    date:"28 de Agosto de 1999",
+  }];
   cardTextLength=200; //set the max length of the preview text on the card
-  constructor(public postService: PostService) {}
+  constructor(public postService: PostService, private router: Router) {}
 
   getPosts(): void{
     this.postService.getPosts().subscribe(
@@ -24,8 +31,12 @@ export class FeedPage {
       }
     );
   }
+  goToPost(id){
+    console.log(`going to id:${id}`);
+    this.router.navigate([`post/${id}`])
+  }
   ngOnInit(){
-    this.getPosts();
+    // this.getPosts();
   }
 
 }

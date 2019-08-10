@@ -4,7 +4,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'feed',
+    // redirectTo: 'feed',
+    redirectTo: 'create-post',
     pathMatch: 'full'
   },
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
-  { path: 'post/:id', loadChildren: './post/post.module#PostPageModule' }
+  { path: 'post/:id', loadChildren: './post/post.module#PostPageModule' },
+  { path: 'create-post', loadChildren: './create-post/create-post.module#CreatePostPageModule' }
 ];
 
 @NgModule({
