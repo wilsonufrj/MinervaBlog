@@ -1,0 +1,41 @@
+ion-title{
+    font-family: 'Volkhov', serif;
+    color: #FBAF3F;
+    font-size: 2.4em;
+    //background-color: #07203F;
+    text-align: center;
+    margin-right: 11%;
+    
+    
+
+}
+ion-toolbar{
+    --background: #07203F;
+    
+}
+ion-label{
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+}
+.subTitulo{
+    font-size: 1.2em;
+    margin-left: 4%;
+    margin-right: 4%;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 6%;
+
+}
+
+ion-button{
+    --background:#FBAF3F;
+    --color: #07203F;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    margin-top: 15%;
+
+    
+}
+ion-menu-button{
+    --color:#FBAF3F;
+
+}
