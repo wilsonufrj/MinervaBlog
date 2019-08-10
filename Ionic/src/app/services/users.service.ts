@@ -20,6 +20,6 @@ export class UsersService {
   constructor( public http: HttpClient) { }
 
   registrarUsuario( form ): Observable<any> {
-  	return this.http.post( this.apiUrl + 'register', form, this.httpHeaders );
+  	return this.http.post( this.apiUrl + 'createUser', form, this.httpHeaders );
   }
 }

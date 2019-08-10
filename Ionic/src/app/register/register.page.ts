@@ -23,28 +23,28 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  // registrarUsuario( form ) {
+  registrarUsuario( form ) {
 
     
-  //     if ( form.status == "VALID" ) {
-  //       console.log(form);
-  //     // Mandaremos a requisição para a API
-  //       this.usersService.registrarUsuario( form.value ).subscribe(
-  //         ( res ) => {
-  //           console.log( res );
-  //           this.router.navigateByUrl('/register-optional');
-  //         }
-  //       );
+      if ( form.status == "VALID" ) {
+        console.log(form);
+      // Mandaremos a requisição para a API
+        this.usersService.registrarUsuario( form.value ).subscribe(
+          ( res ) => {
+            console.log( res );
+            this.router.navigateByUrl('/register-optional');
+          }
+        );
   
-  //     }
+      }
   
-  //   }
+    }
 
-  submitForm(form){
-     console.log(form);
-     this.router.navigateByUrl('/register-optional');
+  // submitForm(form){
+  //    console.log(form);
+  //    this.router.navigateByUrl('/register-optional');
 
-   }
+  //  }
 
   ngOnInit() {
   }
