@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
 use App\User;
+use LaravelLegends\PtBrValidator\Validator;
 
 class UserController extends Controller
 {
@@ -22,7 +23,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->username = $request->username;
         $user->password = $request->password;
-        //Salvando a foto
+        // Salvando a foto
         $image = base64_decode($request->photos);
         $imgName = uniqid().'.png';
         $path = storage_path('app/UserPhotos/'.$imgName);
