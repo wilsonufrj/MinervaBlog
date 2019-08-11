@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -16,8 +17,16 @@ class PostController extends Controller
 
         $post = new Post;
 
-        $post->conteudo = $request->conteudo;
-        $post->user_id = $request->user_id;
+        $post->title = $request->title;
+        $post->text = $request->text;
+        // $post->user_id = $request->user_id;
+        //Salvando a foto
+        $image = base64_decode($request->image);
+        $imgName = uniqid().'.png';
+        $path = storage_path('app/PostPhotos/'.$imgName);
+        file_put_contents($path,$image);
+        $post->image= $imgName;
+
         $post->save();
 
         return response()->json([$post]);
@@ -28,10 +37,13 @@ class PostController extends Controller
         return Post::all();
     }
 
-    //Procurar um unico Post(Todos)
+    //Procurar um unico Post(Todos)    this.router.navigate([`post/${id}`]);
+
     public function showPost($id){
 
         $post = Post::findOrFail($id);
+        $path = storage_path('app/PostPhotos/'.$post->image);
+        // $post->image = download$path;
 
         if($post){
             return response()->success($post);

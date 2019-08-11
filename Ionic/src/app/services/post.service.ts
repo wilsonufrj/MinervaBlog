@@ -26,4 +26,7 @@ constructor(private http: HttpClient) { }
   public getPost(id):Observable<any>{
     return this.http.get( this.backendURL+'showPost/'+id,this.httpHeaders);
   }
+  public createPost(post):Observable<any>{
+    return this.http.post(this.backendURL+'createPost',post,this.httpHeaders);
+  }
 }

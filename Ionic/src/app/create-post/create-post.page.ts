@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import{FormGroup ,FormBuilder,Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import{Camera, CameraOptions} from '@ionic-native/camera/ngx';
+import { PostService } from '../services/post.service';
+
 
 @Component({
   selector: 'app-create-post',
@@ -21,7 +23,7 @@ export class CreatePostPage implements OnInit {
     };
     this.camera.getPicture(options).then(
       (imageData) => {
-        this.image = 'data:image/jpeg;base64,' + imageData;
+        this.image =  'data:image/jpeg;base64,'+ imageData;
         console.log('data:image/jpeg;base64,' + imageData);
     },
     (error) => {
@@ -29,17 +31,28 @@ export class CreatePostPage implements OnInit {
     });
   }
   
-  onSubmit(form){
-    console.log(form);
 
-  }
-
-  constructor(public formbuilder:FormBuilder, private router: Router,private camera: Camera) {
+  constructor(public formbuilder:FormBuilder, private router: Router,private camera: Camera,public postService: PostService) {
     this.newPostForm= this.formbuilder.group({
-      // image: [null, this.image],     
+      id: null,//atualizar para id do user
+      image: [null, this.image],     
       title:[null, [Validators.required, Validators.minLength(10)]],
       text:[null, [Validators.required, Validators.minLength(10)]],
     });
+  }
+
+  onSubmit( form ) { 
+    console.log(form);
+    if ( form.status == "VALID" ) {
+      this.postService.createPost( form.value ).subscribe(
+          ( res ) => {
+        console.log( res );
+        this.router.navigate([`post/${res[0].id}`]);
+      }
+        );
+  
+      }
+  
   }
 
   ngOnInit() {
