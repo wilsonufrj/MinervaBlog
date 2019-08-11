@@ -1,0 +1,42 @@
+<ion-header>
+<ion-toolbar>
+  <div class="titulo"> <ion-title>MinervaBlog</ion-title></div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-text>
+    <p class="subTitulo">Se quiser, nos deixe conhecer mais sobre você</p>
+  </ion-text>
+
+  <!-- <ion-text>
+      <p class="voltar" routerLinkActive="active" > <a routerLink="/register">Voltar</a></p>
+  </ion-text> -->
+
+
+  <form [formGroup]= "registerOpForm" (ngSubmit)="createUser(registerOpForm)" >
+    
+    <!-- <ion-row class="ion-justify-content-center" width="60vw"><img src="{{myPhoto}}" width="60vw" ></ion-row> -->
+    <div >
+        
+        <img clas ="img" src="{{myPhoto}}">
+    </div>
+    <ion-row class="ion-justify-content-center" > 
+      <ion-button (click)="openGallery()"  shape="round" >Abrir galeria</ion-button>
+    </ion-row>
+    <ion-list>
+      <ion-item>
+        <ion-label>Data de nascimento</ion-label>
+        <ion-datetime value="" placeholder="Selecionar Data" formControlName="date"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+         <ion-label position="floating"  >CEP</ion-label>
+          <ion-input type="text" formControlName="CEP" placeholder="#####-###" ></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-row class="ion-justify-content-center">
+      <ion-button (click)="back()" shape="round" >Voltar</ion-button>        
+      <ion-button type="submit" shape="round" >Cadastrar</ion-button>
+    </ion-row>
+  </form>
+</ion-content>

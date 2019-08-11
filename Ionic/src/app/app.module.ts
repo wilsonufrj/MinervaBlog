@@ -11,8 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http'
 import { HttpClientModule,HttpClient,HttpHandler } from '@angular/common/http';
 
-import { PostService } from './post.service';
-
+import { PostService } from './services/post.service';
+import { UsersService } from './services/users.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,13 +23,15 @@ import { PostService } from './post.service';
     AppRoutingModule,
     HttpModule,
     HttpClientModule,
+    
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    UsersService,
     PostService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })

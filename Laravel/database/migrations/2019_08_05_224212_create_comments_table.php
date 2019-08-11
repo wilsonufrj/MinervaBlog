@@ -15,13 +15,15 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->longText('comment_conteudo');
-            $table->string('qtd_like');
+            $table->longText('comment_text');
+            $table->integer('qtd_like');
             $table->integer('post_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned()->nullable(); //para saber quem criou, o comments<n-n>user serve pra representar o like
             $table->timestamps();
         });
 
         Schema::table('comments', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }

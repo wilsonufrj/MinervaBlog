@@ -17,10 +17,17 @@ export class AppComponent {
       icon: 'paper'
     },
     {
-      title: 'List',
-      url: '/list',
+      title: 'CreatePost',
+      url: '/create-post',
       icon: 'list'
+    },
+     {
+      title: 'Cadastro',
+      url: '/register',
+      icon: 'md-person'
     }
+    
+
   ];
 
   constructor(

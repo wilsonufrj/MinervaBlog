@@ -14,6 +14,7 @@ class Likes extends Migration
     public function up()
     {
         Schema::create('likes', function (Blueprint $table) {
+            //essa tabela é exatamente a mesma de comment_user
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('comment_id')->unsigned()->nullable();

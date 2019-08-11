@@ -20,7 +20,7 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'age'=> $faker->numberBetween($min=0, $max=10),
+        'birthday'=> $faker->date($format='d-m-Y', $max='now'),
         'username'=>$faker->userName,
         'password'=>$faker->ean8
     ];

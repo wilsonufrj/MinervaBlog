@@ -1,0 +1,43 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      MinervaBlog
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true">
+    <ion-grid *ngIf="post" >
+      <ion-row>
+        <img class="post-image" src="{{post.image}}" alt="imagem do post" />
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <h1>{{post.title}}</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col size="12">
+            <p class="date">{{post.date}}</p>
+          </ion-col>
+        </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <p class="text">{{post.text}}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-button (click)="back()" shape="round" >Voltar</ion-button>        
+      </ion-row>
+    </ion-grid>
+    <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="scroll.scrollToTop(1500)" color="var(--ion-color-secondary)">
+        <ion-fab-button>
+          <ion-icon name="arrow-dropup"></ion-icon>
+        </ion-fab-button>
+      </ion-fab> -->
+</ion-content>
+
+

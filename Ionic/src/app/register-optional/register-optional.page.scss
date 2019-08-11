@@ -1,0 +1,50 @@
+ion-title{
+    font-family: 'Volkhov', serif;
+    color: #FBAF3F;
+    font-size: 2.4em;
+    //background-color: #07203F;
+    text-align: center;
+    
+    
+
+}
+ion-toolbar{
+    --background: #07203F;
+    
+}
+
+.subTitulo{
+    font-size: 1.2em;
+    margin-left: 4%;
+    margin-right: 4%;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 6%;
+
+}
+
+
+ion-button{
+    --background:#FBAF3F;
+    --color: #07203F;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    margin-top: 15%;
+
+    
+}
+// .img{
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+img{
+    height: 30vh;
+    width: auto;
+    margin: auto;
+    display: block;
+  }
+  .voltar{
+      text-align: right;
+      margin-right: 5%;
+
+  }

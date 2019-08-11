@@ -17,11 +17,11 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('CEP')->nullable();
-            $table->string('age');
+            $table->string('birthday')->nullable();;
             $table->string('email');
             $table->string('username');
             $table->string('password');
-            $table->string('photos')->nullable();
+            $table->string('image')->nullable();
             $table->boolean('is_blogger')->default(false);
             $table->timestamps();
         });

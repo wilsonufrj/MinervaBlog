@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         App\Providers\ReposnseJsonProvider::class,
+        LaravelLegends\PtBrValidator\ValidatorProvider::class,
 
         /*
          * Package Service Providers...

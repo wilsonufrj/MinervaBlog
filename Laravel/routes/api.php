@@ -20,23 +20,28 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Blogger
-Route::get('showPost/{id}','PostController@showPost');
-Route::get('listPost','PostController@listPost');
-Route::post('createPost','PostController@createPost');
-Route::put('updatePost/{id}','PostController@updatePost');
-Route::delete('deletePost/{id}','PostController@deletePost');
+// Route::group(['middleware' => ['api']], function () {
 
-//Comentario
-Route::get('showComment/{id}','CommentController@showComment');
-Route::get('listComment','CommentController@listComment');
-Route::post('createComment','CommentController@createComment');
-Route::put('updateComment/{id}','CommentController@updateComment');
-Route::delete('deleteComment/{id}','CommentController@deleteComment');
+        
+    //Blogger
+    Route::get('showPost/{id}','PostController@showPost');
+    Route::get('listPost','PostController@listPost');
+    Route::post('createPost','PostController@createPost');
+    Route::put('updatePost/{id}','PostController@updatePost');
+    Route::delete('deletePost/{id}','PostController@deletePost');
 
-//User
-Route::get('showUser/{id}','UserController@showUser');
-Route::get('listUser','UserController@listUser');
-Route::post('createUser','UserController@createUser');
-Route::put('updateUser/{id}','UserController@updateUser');
-Route::delete('deleteUser/{id}','UserController@deleteUser');
+    //Comentario
+    Route::get('showComment/{id}','CommentController@showComment');
+    Route::get('listComment','CommentController@listComment');
+    Route::post('createComment','CommentController@createComment');
+    Route::put('updateComment/{id}','CommentController@updateComment');
+    Route::delete('deleteComment/{id}','CommentController@deleteComment');
+
+    //User
+    Route::get('showUser/{id}','UserController@showUser');
+    Route::get('listUser','UserController@listUser');
+    Route::post('createUser','UserController@createUser');
+    Route::put('updateUser/{id}','UserController@updateUser');
+    Route::delete('deleteUser/{id}','UserController@deleteUser');
+
+// });
