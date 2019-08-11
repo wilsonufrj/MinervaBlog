@@ -17,35 +17,30 @@ export class RegisterPage implements OnInit {
       username: [null, [Validators.required, Validators.minLength(8)]],
       password: [null,[Validators.required, Validators.minLength(8)]],
       c_password: [null,[Validators.required, Validators.minLength(8)]],
-     
-
-
+      //TODO:adicionar validator garantindo a igualdade dos campos de password
     });
   }
 
-   registrarUsuario( form ) {
-
-    
+  createUser( form ) {
     if ( form.status == "VALID" ) {
-        console.log(form);
-     //Mandaremos a requisição para a API
-      this.usersService.registrarUsuario( form.value ).subscribe(
-          ( res ) => {
-        console.log( res );
-           this.router.navigateByUrl('/register-optional');
-         }
-        );
+      //Mandaremos a requisição para a API
+      // this.usersService.registrarUsuario( form.value ).subscribe(
+      //     ( res ) => {
+      //   console.log( res );
+      //      this.router.navigateByUrl('/register-optional');
+      //    }
+      //   );
   
+      // }
+
+      //Enviando dados para armazenamento temporario na service
+      console.log(form);
+      this.usersService.setUser( form.value );
+      this.router.navigateByUrl('/register-optional');
+           
       }
   
   }
-
-  // submitForm(form){
-  //     console.log(form);
-  //    this.router.navigateByUrl('/register-optional');
-
-  //  }
-
   ngOnInit() {
   }
 

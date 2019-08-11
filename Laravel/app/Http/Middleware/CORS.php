@@ -22,5 +22,5 @@ class CORS
         ->header('Access-Control-Allow-Headers','Authorization,Content-Type');
 
         return $resposta;
-    }
+    }  
 }

@@ -17,17 +17,17 @@ class UserController extends Controller
         $user = new User;
 
         $user->name = $request->name;
-        // $user->CEP = $request->CEP;
-        // $user->birthday = $request->birthday;
+        $user->CEP = $request->CEP;
+        $user->birthday = $request->birthday;
         $user->email = $request->email;
         $user->username = $request->username;
         $user->password = $request->password;
-        //Salvando a foto
-        // $image = base64_decode($request->photos);
-        // $imgName = uniqid().'.png';
-        // $path = storage_path('app/UserPhotos/'.$imgName);
-        // file_put_contents($path,$image);
-        // $user->photos= $imgName;
+        // Salvando a foto
+        $image = base64_decode($request->photos);
+        $imgName = uniqid().'.png';
+        $path = storage_path('app/UserPhotos/'.$imgName);
+        file_put_contents($path,$image);
+        $user->image= $imgName;
 
         $user->save();
 

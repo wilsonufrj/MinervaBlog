@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('username');
             $table->string('password');
-            $table->string('photos')->nullable();
+            $table->string('image')->nullable();
             $table->boolean('is_blogger')->default(false);
             $table->timestamps();
         });

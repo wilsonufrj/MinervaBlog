@@ -4,6 +4,7 @@ import{FormGroup ,FormBuilder,Validators} from '@angular/forms';
 import {AlertController} from '@ionic/angular';
 import {Router} from '@angular/router';
 import { UsersService } from '../services/users.service';
+import { templateSourceUrl } from '@angular/compiler';
 
 
 @Component({
@@ -14,62 +15,57 @@ import { UsersService } from '../services/users.service';
 export class RegisterOptionalPage implements OnInit {
   myPhoto;
   registerOpForm: FormGroup;
+  tempUser;
 
   constructor(private camera:Camera, public formbuilder:FormBuilder, public alertController:AlertController, private router: Router, public usersService: UsersService  ) {
   this.registerOpForm= this.formbuilder.group({
-       photos:[this.myPhoto],
-       date:[null],
-       CEP: [null,[Validators.required,Validators.minLength(8)]],
-     });
-   }
+      name:[],
+      email:[],
+      username: [],
+      password: [],
+      photos:[this.myPhoto],
+      date:[null],
+      CEP: [null,[Validators.pattern("^[0-9]{5}-[\\d]{3}$")]],
+      });
+    }
 
-   cancel(){
-    this.router.navigate([`feed`]);
-   }
-    submitForm(form){
-     console.log(form);
-     this.alerta();
-
-   }
-
-  registrarUsuario( form ) {
-
-    
-    if ( form.status == "VALID" ) {
-        console.log(form);
-     //Mandaremos a requisição para a API
-      this.usersService.atualizarUsuario( form.value,id ).subscribe(
-          ( res ) => {
-        console.log( res );
-        this.alerta();
-         }
-        );
-  
-      }
-  
+  back(){
+    this.router.navigate([`register`]);
   }
 
-  async alerta(){
-    const alert= await this.alertController.create(
-      { header:'Cadastro realizado!',
-        message:'Agora você pode ter todos os beneficios de um usuário ',
-        buttons:[
-        {
-         text: 'OK',
-         handler: () => {
+  createUser( form ) {
+    console.log('trying');
+    if ( form.status == "VALID" ) {
+      form.value.name=this.tempUser.name;
+      form.value.email=this.tempUser.email;
+      form.value.username=this.tempUser.username;
+      form.value.password=this.tempUser.password;
+      console.log('posted form:');
+      console.log(form);
+     //Mandaremos a requisição para a API
+      this.usersService.createUser( form.value ).subscribe(
+        ( res ) => {
+          console.log( res );
+          this.alertDone();
+        }
+      );
+    }else{console.log('erro de validacao')}
+  }
+
+  async alertDone(){
+    const alert= await this.alertController.create({ 
+      header:'Cadastro realizado!',
+      message:'Agora você pode ter todos os beneficios de um usuário ',
+      buttons:[{
+        text: 'OK',
+        handler: () => {
           console.log('Confirm Okay');
-          this.router.navigateByUrl('/home');
-
-          
+          this.router.navigateByUrl('/feed');
         }
-      
-        }
-      ]
-
-     
-      });
-      await alert.present();
-    }
+      }] 
+    });
+    await alert.present();
+  }
 
   openCamera() {
     const options: CameraOptions = {
@@ -108,13 +104,16 @@ export class RegisterOptionalPage implements OnInit {
       }
     );
   }
-
-  
- 
- 
+  getUser(){
+    this.tempUser=this.usersService.getUser();
+    console.log("temp:")
+    console.log(this.tempUser);
+    
+  }
 
   ngOnInit() {
     this.myPhoto='/assets/user.png';
+    this.getUser();
   }
 
 }

@@ -13,12 +13,12 @@
   </ion-text> -->
 
 
-  <form [formGroup]= "registerOpForm" (ngSubmit)="submitForm(registerOpForm)" >
+  <form [formGroup]= "registerOpForm" (ngSubmit)="createUser(registerOpForm)" >
     
     <!-- <ion-row class="ion-justify-content-center" width="60vw"><img src="{{myPhoto}}" width="60vw" ></ion-row> -->
-    <div clas ="img">
+    <div >
         
-        <img src="{{myPhoto}}">
+        <img clas ="img" src="{{myPhoto}}">
     </div>
     <ion-row class="ion-justify-content-center" > 
       <ion-button (click)="openGallery()"  shape="round" >Abrir galeria</ion-button>
@@ -26,17 +26,17 @@
     <ion-list>
       <ion-item>
         <ion-label>Data de nascimento</ion-label>
-        <ion-datetime value="1990-02-19" placeholder="Select Date" formControlName="date"></ion-datetime>
+        <ion-datetime value="" placeholder="Selecionar Data" formControlName="date"></ion-datetime>
       </ion-item>
 
       <ion-item>
-         <ion-label position="floating">CEP</ion-label>
-          <ion-input type="number" formControlName="CEP" ></ion-input>
+         <ion-label position="floating"  >CEP</ion-label>
+          <ion-input type="text" formControlName="CEP" placeholder="#####-###" ></ion-input>
       </ion-item>
     </ion-list>
     <ion-row class="ion-justify-content-center">
-      <ion-button (click)="cancel()" shape="round" >Cancelar</ion-button>        
-      <ion-button type="submit" shape="round" >Enviar</ion-button>
+      <ion-button (click)="back()" shape="round" >Voltar</ion-button>        
+      <ion-button type="submit" shape="round" >Cadastrar</ion-button>
     </ion-row>
   </form>
 </ion-content>

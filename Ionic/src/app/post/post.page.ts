@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from "@angular/router";
+
 
 @Component({
   selector: 'app-post',
@@ -9,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PostPage implements OnInit {
 
-  constructor(public postService: PostService, private route: ActivatedRoute) { }
+  constructor(public postService: PostService, private route: ActivatedRoute,private router: Router) { }
   // post={
   //   title:"Um Titulo bem bonito",
   //   image:"../../assets/img.jpeg",
@@ -28,14 +30,16 @@ export class PostPage implements OnInit {
         this.post.text = res.data.text;
         this.post.image = res.data.image;
         this.dateFormatHelper =new Date(res.data.updated_at);
-        this.post.date = `${this.dateFormatHelper.getDay()}/${this.dateFormatHelper.getMonth()}/${this.dateFormatHelper.getFullYear()}`;
+        this.post.date = `${this.dateFormatHelper.getDate()}/${this.dateFormatHelper.getMonth()}/${this.dateFormatHelper.getFullYear()}`;
       },
       (error) => {
         console.log(error);
       }
     );
   }
-
+  back(){
+    this.router.navigate([`feed`]);
+  }
   ngOnInit() {
 
     this.route.params.subscribe(

@@ -36,11 +36,10 @@ export class FeedPage {
     console.log(`going to id:${id}`);
     this.router.navigate([`post/${id}`]);
   }
-  ngOnInit(){
-    this.getPosts();
-  }
   newPost(){
     this.router.navigate([`create-post`]);
   }
-
+  ngOnInit(){
+    this.getPosts();
+  }
 }

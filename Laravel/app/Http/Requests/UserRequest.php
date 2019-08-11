@@ -29,8 +29,8 @@ class UserRequest extends FormRequest
         if($this->isMethod('post')){
             return [
                 'name'=>'required|string',
-                'CEP'=>'string|formato_cep',
-                'birthday'=>'data',
+                'CEP'=>'formato_cep|nullable',
+                'birthday'=>'data|nullable',
                 'email' => 'required|email',
                 'username' => 'required|alpha',
                 'password' => 'required|alpha-num'

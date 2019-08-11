@@ -17,18 +17,41 @@ export class UsersService {
   	}
   }
 
+  //armazenamento temporario para troca de paginas
+  user={
+    name:'',
+    email:'',
+    username:'',
+    password:'',
+  }
+
   constructor( public http: HttpClient) { }
 
-  registrarUsuario( form ): Observable<any> {
+  setUser(form){
+    this.user=form;
+  }
+  getUser(){
+    let response =this.user;
+    this.user={
+      name:'',
+      email:'',
+      username:'',
+      password:'',
+    }
+    return response;
+  }
+  
+
+  createUser( form ): Observable<any> {
   	return this.http.post( this.apiUrl + 'createUser', form, this.httpHeaders );
   }
 
-  logarUsuario( form ): Observable<any> {
+  loginUser( form ): Observable<any> {
   	return this.http.post( this.apiUrl + 'login', form, this.httpHeaders );
   }
 
 
-  public atualizarUsuario(form,id):Observable<any> {
+  public updateUser(form,id):Observable<any> {
     return this.http.put(
       this.apiUrl + 'updateUser/' + id, {
         name: form.name,
