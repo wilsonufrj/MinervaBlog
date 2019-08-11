@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { HttpModule } from '@angular/http'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  backendURL:string = "localhost:8000/api/";
-  constructor(private http: HttpClient) {}
+  backendURL:string = "http://localhost:8000/api/";
 
   httpHeaders: any = {
   	headers: {
@@ -16,12 +17,13 @@ export class PostService {
   	}
 }
 
+constructor(private http: HttpClient) { }
+
+
   public getPosts():Observable<any>{
-    return this.http.get(
-      this.backendURL+'listPost',this.httpHeaders);
+    return this.http.get( this.backendURL+'listPost',this.httpHeaders);
   }
   public getPost(id):Observable<any>{
-    return this.http.get(
-      this.backendURL+'post'+id,this.httpHeaders);
+    return this.http.get( this.backendURL+'showPost/'+id,this.httpHeaders);
   }
 }
