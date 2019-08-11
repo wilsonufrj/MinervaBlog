@@ -8,9 +8,9 @@
     <p class="subTitulo">Se quiser, nos deixe conhecer mais sobre você</p>
   </ion-text>
 
-  <ion-text>
+  <!-- <ion-text>
       <p class="voltar" routerLinkActive="active" > <a routerLink="/register">Voltar</a></p>
-  </ion-text>
+  </ion-text> -->
 
 
   <form [formGroup]= "registerOpForm" (ngSubmit)="submitForm(registerOpForm)" >
@@ -35,7 +35,8 @@
       </ion-item>
     </ion-list>
     <ion-row class="ion-justify-content-center">
-        <ion-button type="submit" shape="round" >Cadastrar</ion-button>
+      <ion-button (click)="cancel()" shape="round" >Cancelar</ion-button>        
+      <ion-button type="submit" shape="round" >Enviar</ion-button>
     </ion-row>
   </form>
 </ion-content>

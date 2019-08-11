@@ -17,17 +17,17 @@ class UserController extends Controller
         $user = new User;
 
         $user->name = $request->name;
-        $user->CEP = $request->CEP;
-        $user->birthday = $request->birthday;
+        // $user->CEP = $request->CEP;
+        // $user->birthday = $request->birthday;
         $user->email = $request->email;
         $user->username = $request->username;
         $user->password = $request->password;
         //Salvando a foto
-        $image = base64_decode($request->photos);
-        $imgName = uniqid().'.png';
-        $path = storage_path('app/UserPhotos/'.$imgName);
-        file_put_contents($path,$image);
-        $user->photos= $imgName;
+        // $image = base64_decode($request->photos);
+        // $imgName = uniqid().'.png';
+        // $path = storage_path('app/UserPhotos/'.$imgName);
+        // file_put_contents($path,$image);
+        // $user->photos= $imgName;
 
         $user->save();
 
@@ -53,8 +53,8 @@ class UserController extends Controller
         if($request->CEP){
             $user->CEP = $request->CEP;
         }
-        if($request->age){
-            $user->age = $request->age;
+        if($request->birthday){
+            $user->birthday = $request->birthday;
         }
         if($request->email){
             $user->email = $request->email;
@@ -65,6 +65,14 @@ class UserController extends Controller
         if($request->password){
             $user->password = $request->password;
         }
+        if($request->image){
+            $image = base64_decode($request->image);
+            $imgName = uniqid().'.png';
+            $path = storage_path('app/UserPhotos/'.$imgName);
+            file_put_contents($path,$image);
+            $user->photos= $imgName;
+        }
+
 
         $user->save();
 

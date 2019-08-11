@@ -23,28 +23,31 @@ export class RegisterOptionalPage implements OnInit {
      });
    }
 
+   cancel(){
+    this.router.navigate([`feed`]);
+   }
     submitForm(form){
      console.log(form);
      this.alerta();
 
    }
 
-  // registrarUsuario( form ) {
+  registrarUsuario( form ) {
 
     
-  //   if ( form.status == "VALID" ) {
-  //       console.log(form);
-  //    //Mandaremos a requisição para a API
-  //     this.usersService.cadastrarUsuario( form.value ).subscribe(
-  //         ( res ) => {
-  //       console.log( res );
-  //       this.alerta();
-  //        }
-  //       );
+    if ( form.status == "VALID" ) {
+        console.log(form);
+     //Mandaremos a requisição para a API
+      this.usersService.atualizarUsuario( form.value,id ).subscribe(
+          ( res ) => {
+        console.log( res );
+        this.alerta();
+         }
+        );
   
-  //     }
+      }
   
-  // }
+  }
 
   async alerta(){
     const alert= await this.alertController.create(

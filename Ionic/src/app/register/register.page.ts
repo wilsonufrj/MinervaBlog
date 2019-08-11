@@ -17,7 +17,7 @@ export class RegisterPage implements OnInit {
       username: [null, [Validators.required, Validators.minLength(8)]],
       password: [null,[Validators.required, Validators.minLength(8)]],
       c_password: [null,[Validators.required, Validators.minLength(8)]],
-      
+     
 
 
     });
