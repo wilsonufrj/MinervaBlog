@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\PostRequest;
 use LaravelLegends\PtBrValidator\Validator;
 
 use App\Post;
@@ -12,7 +13,7 @@ class PostController extends Controller
 {
 
     //Criar um post (Somente para o Blogger)**Falta Atualizar
-    public function createPost(Request $request){
+    public function createPost(PostRequest $request){
 
         if(!Storage::exists('PostPhotos/'))
             Storage::makeDirectory('PostPhotos/',0775,true);
@@ -54,7 +55,7 @@ class PostController extends Controller
     }
 
     //Atualizar um Post (Somente para o Blogger)**Falta atualizar
-    public function updatePost(Request $request,$id){
+    public function updatePost(PostRequest $request,$id){
 
         $post = Post::findOrFail($id);
 
