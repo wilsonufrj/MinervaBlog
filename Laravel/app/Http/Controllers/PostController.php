@@ -22,7 +22,7 @@ class PostController extends Controller
         // $post->user_id = $request->user_id;
         //Salvando a foto
         $image = base64_decode($request->image);
-        $imgName = uniqid().'.png';
+        $imgName = uniqid();
         $path = storage_path('app/PostPhotos/'.$imgName);
         file_put_contents($path,$image);
         $post->image= $imgName;
