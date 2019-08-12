@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use LaravelLegends\PtBrValidator\Validator;
+
 use App\Post;
 
 class PostController extends Controller
@@ -17,7 +20,16 @@ class PostController extends Controller
         $post = new Post;
 
         $post->conteudo = $request->conteudo;
+        $post->title = $request->title;
         $post->user_id = $request->user_id;
+
+        //Salvando a foto
+        $image = base64_decode($request->photos);
+        $imgName = uniqid().'.png';
+        $path = storage_path('app/PostPhotos/'.$imgName);
+        file_put_contents($path,$image);
+        $post->photos= $imgName;
+
         $post->save();
 
         return response()->json([$post]);
@@ -52,6 +64,10 @@ class PostController extends Controller
         if($request->user_id){
             $post->user_id = $request->user_id;
         }
+        if($request->title){
+            $post->title = $request->title;
+        }
+
         $post->save();
 
         return response()->json([$post]);

@@ -27,6 +27,7 @@ class UserRequest extends FormRequest
     public function rules()
     {   
         if($this->isMethod('post')){
+
             return [
                 'name'=>'required|string',
                 'CEP'=>'string|formato_cep',
