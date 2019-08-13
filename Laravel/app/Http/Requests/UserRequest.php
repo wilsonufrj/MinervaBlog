@@ -27,11 +27,10 @@ class UserRequest extends FormRequest
     public function rules()
     {   
         if($this->isMethod('post')){
-
             return [
                 'name'=>'required|string',
-                'CEP'=>'string|formato_cep',
-                'birthday'=>'required|data',
+                'CEP'=>'formato_cep|nullable',
+                'birthday'=>'data|nullable',
                 'email' => 'required|email',
                 'username' => 'required|alpha-num',
                 'password' => 'required|alpha-num',
@@ -41,7 +40,7 @@ class UserRequest extends FormRequest
         //Formato da data DD/MM/YYYY
         if($this->isMethod('put')){
             return [
-                'name'=>'required|string',
+                'name'=>'string',
                 'CEP'=>'string|formato_cep',
                 'birthday'=>'required|data',
                 'email' => 'required|email',

@@ -1,0 +1,56 @@
+ion-menu-button{
+    --color:#FBAF3F;
+
+}
+
+ion-toolbar{
+    --background: #07203F;
+    
+}
+
+ion-content{
+    --background: #07203F;
+
+}
+
+.Titulo{
+    text-align: center;
+    color: #FBAF3F;
+    font-family: 'Volkhov', serif;
+    font-size: 3em;
+
+}
+
+ion-button{
+    --background:#FBAF3F;
+    --color: #07203F;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    margin-top: 15%;
+
+}
+
+
+ion-item{
+    margin-top: 10%;
+    --background:rgb(205,205,205, 0.8);
+    margin-left: 7%;
+    margin-right: 7%;
+    
+}
+ion-input{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+}
+    
+#entrada{
+border-radius: 10px;
+}
+
+.cadastrar{
+    color: white;
+    margin-left: 7%;
+    
+
+}
+
