@@ -45,14 +45,12 @@ export class CreatePostPage implements OnInit {
     console.log(form);
     if ( form.status == "VALID" ) {
       this.postService.createPost( form.value ).subscribe(
-          ( res ) => {
-        console.log( res );
-        this.router.navigate([`post/${res[0].id}`]);
-      }
-        );
-  
-      }
-  
+        ( res ) => {
+          console.log( res );
+          this.router.navigate([`post/${res[0].id}`]);
+        }
+      );
+    }
   }
 
   ngOnInit() {

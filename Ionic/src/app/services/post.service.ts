@@ -21,12 +21,34 @@ constructor(private http: HttpClient) { }
 
 
   public getPosts():Observable<any>{
+    // let response={
+    //   title:post.title,
+    //   text:post.text,
+    //   photo:post.image,
+    // }
     return this.http.get( this.backendURL+'listPost',this.httpHeaders);
   }
   public getPost(id):Observable<any>{
     return this.http.get( this.backendURL+'showPost/'+id,this.httpHeaders);
   }
   public createPost(post):Observable<any>{
-    return this.http.post(this.backendURL+'createPost',post,this.httpHeaders);
+    let request = {
+      title:post.title,
+      text:post.text,
+      photo:post.image,
+    }
+    return this.http.post(this.backendURL+'createPost',request,this.httpHeaders);
+  }
+  public updatePost(post,id):Observable<any>{
+    let request = {
+      title:post.title,
+      text:post.text,
+      photo:post.image,
+    }
+    console.log('idserv:'+id);
+    return this.http.put(this.backendURL+'updatePost/'+id,request,this.httpHeaders);
+  }
+  public deletePost(id):Observable<any>{
+    return this.http.delete(this.backendURL+'deletePost/'+id,this.httpHeaders);
   }
 }

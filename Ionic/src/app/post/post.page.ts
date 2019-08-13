@@ -40,6 +40,10 @@ export class PostPage implements OnInit {
   back(){
     this.router.navigate([`feed`]);
   }
+  editPost(){
+    console.log('indo para edição');
+    this.router.navigate([`edit-post/${this.post.id}`]);
+  }
   ngOnInit() {
 
     this.route.params.subscribe(
