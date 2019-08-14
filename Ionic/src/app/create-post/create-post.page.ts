@@ -42,7 +42,7 @@ export class CreatePostPage implements OnInit {
   }
 
   onSubmit( form ) { 
-    console.log(form);
+    console.log('posted item: '+form);
     if ( form.status == "VALID" ) {
       this.postService.createPost( form.value ).subscribe(
         ( res ) => {

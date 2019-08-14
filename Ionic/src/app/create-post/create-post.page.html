@@ -19,7 +19,9 @@
         <ion-textarea auto-grow=true placeholder="Texto"  formControlName=content ></ion-textarea>
       </ion-item>
     <div class="btn center" >
-      <img *ngIf="image" src="'data:image/jpeg;base64,'{{image}}" alt="" srcset="">
+    <!-- <img *ngIf="photos" src="data:image/jpeg;base64,{{photos}}" alt="" srcset=""> -->
+
+      <img *ngIf="photos" src="data:image/jpeg;base64,{{photos}}" alt="" srcset="">
     <ion-button (click)="OpenGallery()">
       <ion-icon name="camera"></ion-icon> Adicionar imagem
     </ion-button>
