@@ -19,9 +19,6 @@ use App\Http\Controllers\UserController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-// Route::group(['middleware' => ['api']], function () {
-
         
     //Blogger
     Route::get('showPost/{id}','PostController@showPost');
@@ -29,6 +26,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::post('createPost','PostController@createPost');
     Route::put('updatePost/{id}','PostController@updatePost');
     Route::delete('deletePost/{id}','PostController@deletePost');
+
+    Route::get('bloggerPost/{id}','UserController@blogger_Post');//O blogger ver os seus Posts **OK
+    Route::get('user/{id}','PostController@user');//Ver o blogger de um post  **So funciona quando o nome é user, por motivos 
+    //magicos
+    Route::get('user/{id}','CommentController@user');//Retorna quem fez o comentario **Mesmo motivo do ver o blogger de um post
+    Route::get('postComment/{id}','PostController@postComment');// Retorna todos os comentarios de um Post
+
+
+
+
+
 
     //Comentario
     Route::get('showComment/{id}','CommentController@showComment');
@@ -39,9 +47,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
     //User
     Route::get('showUser/{id}','UserController@showUser');
-    Route::get('listUser','UserController@listUser');
+    Route::get('listUser/','UserController@listUser');
     Route::post('createUser','UserController@createUser');
     Route::put('updateUser/{id}','UserController@updateUser');
     Route::delete('deleteUser/{id}','UserController@deleteUser');
 
-// });
+
+
+

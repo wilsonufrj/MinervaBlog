@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    //user que criou o post
+    //Retorna o blogger que criou o post
     public function user(){
         return $this->belongsTo('App\User');
+    }
+
+    //Retorna os comentarios de um Post
+    public function postComment(){
+        return $this->hasMany('App\Comment');
     }
 
 }

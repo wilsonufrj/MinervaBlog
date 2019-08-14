@@ -32,12 +32,18 @@ class CommentController extends Controller
     }
 
     //Atualizar um Comentario (Usuario e Blogger somente)**Falta atualizar
-    public function updateComment(Request $request,$id){
+    public function updateComment(CommentRequest $request,$id){
 
         $comment = Comment::findOrFail($id);
 
         if($request->comment_text){
             $comment->comment_text = $request->comment_text;
+        }
+        if($request->user_id){
+            $comment->user_id = $request->user_id;
+        }
+        if($request->post_id){
+            $comment->post_id = $request->post_id;
         }
         $comment->save();
 
@@ -48,5 +54,10 @@ class CommentController extends Controller
     public function deleteComment($id){
         Comment::destroy($id);
         return response()->json(['Comment deletado']);
+    }
+
+    //Retorna quem fez o comentario
+    public function user($id){
+        return Comment::find($id)->user;
     }
 }

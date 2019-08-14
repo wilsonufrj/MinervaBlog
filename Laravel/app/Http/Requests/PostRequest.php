@@ -36,8 +36,8 @@ class PostRequest extends FormRequest
         }
         if($this->isMethod('put')){
             return [
-                'content'=>'required|string',
-                'title'=>'required|string',
+                'content'=>'string',
+                'title'=>'string',
             ];
         }
     }

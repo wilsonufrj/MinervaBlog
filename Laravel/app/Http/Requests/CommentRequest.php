@@ -33,7 +33,7 @@ class CommentRequest extends FormRequest
         }
         if($this->isMethod('put')){
             return [
-                'comment_text'=>'required|string'
+                'comment_text'=>'string'
             ];
         }
     }

@@ -41,7 +41,6 @@ class PostController extends Controller
         return Post::all();
     }
 
-    //Procurar um unico Post(Todos)    this.router.navigate([`post/${id}`]);
 
     public function showPost($id){
 
@@ -81,6 +80,16 @@ class PostController extends Controller
     public function deletePost($id){
         Post::destroy($id);
         return response()->json(['Post deletado']);
+    }
+
+    //Ver o Blogger de um post
+    public function user($id){
+        return Post::find($id)->user;
+    }
+
+    //Retorna TODOS os comentarios de um post
+    public function postComment($id){
+        return Post::find($id)->postComment;
     }
 
 }

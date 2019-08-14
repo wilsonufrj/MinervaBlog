@@ -85,4 +85,10 @@ class UserController extends Controller
         User::destroy($id);
         return response()->json(['User deletado']);
     }
+
+    //Retornar os Posts de um Blogger **Somente para o Blogger
+    public function blogger_Post($id){
+        //Fazer um if se o usuario não tiver nenhum post *Opcional
+        return User::find($id)->bloggerPost;
+    }
 }
