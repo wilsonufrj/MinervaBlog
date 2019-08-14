@@ -13,15 +13,15 @@ import { AlertController } from '@ionic/angular';
 
 export class EditPostPage implements OnInit {
   newPostForm:FormGroup;
-  image;
-  post={id:'',title:'',text:'',image:'',date:''};
+  photos;
+  post={id:'',title:'',content:'',photos:'',date:''};
 
   constructor(public formbuilder:FormBuilder, private router: Router,private camera: Camera,public postService: PostService,private route: ActivatedRoute,public alertController: AlertController) {
     this.newPostForm= this.formbuilder.group({
       id: null,//atualizar para id do user
-      image: [null, this.image],     
+      photos: [null, this.photos],     
       title:[null, [Validators.required, Validators.minLength(10)]],
-      text:[null, [Validators.required, Validators.minLength(10)]],
+      content:[null, [Validators.required, Validators.minLength(10)]],
     });
   }
   
@@ -34,7 +34,7 @@ export class EditPostPage implements OnInit {
     };
     this.camera.getPicture(options).then(
       (imageData) => {
-        this.image =  imageData;
+        this.photos =  imageData;
         console.log('data:image/jpeg;base64,' + imageData);
     },
     (error) => {
@@ -96,8 +96,8 @@ export class EditPostPage implements OnInit {
         console.log(res);
         this.post.id = res.data.id;
         this.post.title = res.data.title;
-        this.post.text = res.data.text;
-        this.image = res.data.image;
+        this.post.content = res.data.content;
+        this.photos = res.data.photos;
         // this.dateFormatHelper =new Date(res.data.updated_at);
         // this.post.date = `${this.dateFormatHelper.getDate()}/${this.dateFormatHelper.getMonth()}/${this.dateFormatHelper.getFullYear()}`;
       },
