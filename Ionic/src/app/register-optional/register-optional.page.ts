@@ -33,10 +33,15 @@ export class RegisterOptionalPage implements OnInit {
     this.router.navigate([`register`]);
   }
 
-
+  formatDate(date){
+    let helperDate = new Date(Date.parse(date))
+    let helperMonth=helperDate.getMonth();
+    if (helperMonth<10) {
+      helperMonth=parseInt('0'+helperMonth);
+    }
+  }
 
   createUser( form ) {
-    let helperDate;
     console.log('trying');
     if ( form.status == "VALID" ) {
       form.value.name=this.tempUser.name;
@@ -44,9 +49,9 @@ export class RegisterOptionalPage implements OnInit {
       form.value.username=this.tempUser.username;
       form.value.password=this.tempUser.password;
       // console.log('formato atual'+form.value.birthday);
-      helperDate = new Date(Date.parse(form.value.birthday ));
-      form.value.birthday=`${helperDate.getDate()}/${helperDate.getMonth()}/${helperDate.getFullYear()}`;
-
+      // 
+      // form.value.birthday=`${helperDate.getDate()}/${helperDate.getMonth()}/${helperDate.getFullYear()}`;
+      form.value.birthday=this.formatDate(form.value.birthday);
       console.log('posted form:');
       console.log(form);
     
