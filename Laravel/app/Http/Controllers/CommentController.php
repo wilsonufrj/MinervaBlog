@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
 use App\Comment;
 
 class CommentController extends Controller
 {
 
     //Cria um comentario (Usuario e Blogger somente)
-    public function createComment(Request $request){
+    public function createComment(CommentRequest $request){
         $comment = new Comment;
 
         $comment->comment_text = $request->comment_text;
