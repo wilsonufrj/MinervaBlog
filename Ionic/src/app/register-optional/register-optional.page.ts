@@ -34,11 +34,20 @@ export class RegisterOptionalPage implements OnInit {
   }
 
   formatDate(date){
-    let helperDate = new Date(Date.parse(date))
-    let helperMonth=helperDate.getMonth();
-    if (helperMonth<10) {
-      helperMonth=parseInt('0'+helperMonth);
+    let helperDate = new Date(Date.parse(date));
+    console.log(helperDate);
+    let helperDay:string;
+    let helperMonth:string;
+    helperMonth=`${helperDate.getMonth()+1}`;
+    if (helperDate.getMonth()<9) {
+      helperMonth=`0${helperDate.getMonth()+1}`;
     }
+    helperDay=`${helperDate.getDate()}`;
+    if (helperDate.getDay()<10){
+      helperDay=`0${helperDate.getDate()}`;
+    }
+
+    return `${helperDay}/${helperMonth}/${helperDate.getFullYear()}`;
   }
 
   createUser( form ) {
