@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
 use App\Comment;
 
 class CommentController extends Controller
 {
 
     //Cria um comentario (Usuario e Blogger somente)
-    public function createComment(Request $request){
+    public function createComment(CommentRequest $request){
         $comment = new Comment;
 
-        $comment->comment_conteudo = $request->comment_conteudo;
+        $comment->comment_text = $request->comment_text;
 
         $comment->save();
 
@@ -31,12 +32,18 @@ class CommentController extends Controller
     }
 
     //Atualizar um Comentario (Usuario e Blogger somente)**Falta atualizar
-    public function updateComment(Request $request,$id){
+    public function updateComment(CommentRequest $request,$id){
 
         $comment = Comment::findOrFail($id);
 
-        if($request->comment_conteudo){
-            $comment->comment_conteudo = $request->comment_conteudo;
+        if($request->comment_text){
+            $comment->comment_text = $request->comment_text;
+        }
+        if($request->user_id){
+            $comment->user_id = $request->user_id;
+        }
+        if($request->post_id){
+            $comment->post_id = $request->post_id;
         }
         $comment->save();
 
@@ -47,5 +54,10 @@ class CommentController extends Controller
     public function deleteComment($id){
         Comment::destroy($id);
         return response()->json(['Comment deletado']);
+    }
+
+    //Retorna quem fez o comentario
+    public function user($id){
+        return Comment::find($id)->user;
     }
 }

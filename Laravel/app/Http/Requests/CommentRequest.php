@@ -3,11 +3,11 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use App\User;
+use Illuminate\Contracts\Validation\Validator;
+use App\Comment;
 
-class UserRequest extends FormRequest
+class CommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,7 +18,7 @@ class UserRequest extends FormRequest
     {
         return true;
     }
-    
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -28,25 +28,12 @@ class UserRequest extends FormRequest
     {   
         if($this->isMethod('post')){
             return [
-                'name'=>'required|string',
-                'CEP'=>'formato_cep|nullable',
-                'birthday'=>'data|nullable',
-                'email' => 'required|email',
-                'username' => 'required|alpha-num',
-                'password' => 'required|alpha-num',
-                
+                'comment_text'=>'required|string'
             ];
         }
-        //Formato da data DD/MM/YYYY
         if($this->isMethod('put')){
             return [
-                'name'=>'string',
-                'CEP'=>'string|formato_cep',
-                'birthday'=>'required|data',
-                'email' => 'required|email',
-                'username' => 'required|alpha',
-                'password' => 'required|alpha-num',
-                
+                'comment_text'=>'string'
             ];
         }
     }

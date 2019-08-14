@@ -15,10 +15,11 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('title');
-            $table->longText('text');
-            $table->string('image')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
+            $table->string('photos')->nullable();
+            //É necessario pesquisar pq não funciona para textos grandes
+            $table->longText('content');
+            $table->string('title');
             $table->timestamps();
         });
 
