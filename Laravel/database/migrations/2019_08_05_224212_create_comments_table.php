@@ -16,7 +16,7 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->longText('comment_text');
-            $table->integer('qtd_like');
+            $table->integer('qtd_like')->default(0);;
             $table->integer('post_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned()->nullable(); //para saber quem criou, o comments<n-n>user serve pra representar o like
             $table->timestamps();

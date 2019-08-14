@@ -12,7 +12,7 @@ class CommentController extends Controller
     public function createComment(Request $request){
         $comment = new Comment;
 
-        $comment->comment_conteudo = $request->comment_conteudo;
+        $comment->comment_text = $request->comment_text;
 
         $comment->save();
 
@@ -35,8 +35,8 @@ class CommentController extends Controller
 
         $comment = Comment::findOrFail($id);
 
-        if($request->comment_conteudo){
-            $comment->comment_conteudo = $request->comment_conteudo;
+        if($request->comment_text){
+            $comment->comment_text = $request->comment_text;
         }
         $comment->save();
 

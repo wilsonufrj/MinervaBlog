@@ -12,8 +12,16 @@ class PostTableSeeder extends Seeder
     public function run()
     {
         App\Post::create([
-            'title'=>"Hello World",
-            'content'=>"Lorem Ipsum"
+            'title'=>"Primeiro Post",
+            'content'=>"Conteudo do primeiro post"
+        ]);
+        App\Post::create([
+            'title'=>"Segundo Post",
+            'content'=>"Conteudo do segundo post"
+        ]);
+        App\Post::create([
+            'title'=>"Terceiro Post",
+            'content'=>"Conteudo do terceiro post"
         ]);
     }
 }
