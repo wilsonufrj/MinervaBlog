@@ -33,13 +33,20 @@ export class RegisterOptionalPage implements OnInit {
     this.router.navigate([`register`]);
   }
 
+
+
   createUser( form ) {
+    let helperDate;
     console.log('trying');
     if ( form.status == "VALID" ) {
       form.value.name=this.tempUser.name;
       form.value.email=this.tempUser.email;
       form.value.username=this.tempUser.username;
       form.value.password=this.tempUser.password;
+      // console.log('formato atual'+form.value.birthday);
+      helperDate = new Date(Date.parse(form.value.birthday ));
+      form.value.birthday=`${helperDate.getDate()}/${helperDate.getMonth()}/${helperDate.getFullYear()}`;
+
       console.log('posted form:');
       console.log(form);
     
@@ -67,24 +74,6 @@ export class RegisterOptionalPage implements OnInit {
     await alert.present();
   }
 
-  // openCamera() {
-  //   const options: CameraOptions = {
-  //     quality: 100,
-  //     destinationType: this.camera.DestinationType.FILE_URI,
-  //     encodingType: this.camera.EncodingType.JPEG,
-  //     mediaType: this.camera.MediaType.PICTURE
-  //   };
- 
-  //   this.camera.getPicture(options).then(
-  //     (imageData) => {
-  //       this.myPhoto= 'data:image/jpeg;base64,' + imageData;
-  //       console.log('data:image/jpeg;base64,' + imageData);
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
 
   openGallery() {
     const options: CameraOptions = {
