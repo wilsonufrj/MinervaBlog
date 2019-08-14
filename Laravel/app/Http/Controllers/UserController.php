@@ -29,7 +29,7 @@ class UserController extends Controller
         $imgName = uniqid();
         $path = storage_path('app/UserPhotos/'.$imgName);
         file_put_contents($path,$image);
-        $user->image= $imgName;
+        $user->photos= $imgName;
 
         $user->save();
 
@@ -67,8 +67,8 @@ class UserController extends Controller
         if($request->password){
             $user->password = $request->password;
         }
-        if($request->image){
-            $image = base64_decode($request->image);
+        if($request->photos){
+            $image = base64_decode($request->photos);
             $imgName = uniqid().'.png';
             $path = storage_path('app/UserPhotos/'.$imgName);
             file_put_contents($path,$image);

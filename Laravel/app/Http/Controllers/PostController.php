@@ -20,7 +20,7 @@ class PostController extends Controller
 
         $post = new Post;
 
-        $post->conteudo = $request->conteudo;
+        $post->content = $request->content;
         $post->title = $request->title;
         $post->user_id = $request->user_id;
 
@@ -62,8 +62,8 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
 
-        if($request->conteudo){
-            $post->conteudo = $request->conteudo;
+        if($request->content){
+            $post->content = $request->content;
         }
         if($request->user_id){
             $post->user_id = $request->user_id;
