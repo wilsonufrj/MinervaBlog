@@ -37,6 +37,7 @@ export class PostPage implements OnInit {
       }
     );
   }
+
   back(){
     this.router.navigate([`feed`]);
   }

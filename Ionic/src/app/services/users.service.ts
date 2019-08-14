@@ -50,8 +50,13 @@ export class UsersService {
   	return this.http.post( this.apiUrl + 'login', form, this.httpHeaders );
   }
 
+  public showUser(id):Observable<any> {
+    return this.http.get(
+        this.apiUrl + 'showUser/' + id,  this.httpHeaders);
+}
 
-  public updateUser(form,id):Observable<any> {
+
+  public updateUser(id,form):Observable<any> {
     return this.http.put(
       this.apiUrl + 'updateUser/' + id, {
         name: form.name,
@@ -59,8 +64,15 @@ export class UsersService {
         username: form.username,
         photos: form.photos,
         birthday: form.birthday,
-        CEP: form.CEP
+        CEP: form.CEP,
+        password: form.password
       }, this.httpHeaders);
+  }
+
+  public deleteUser(id):Observable<any> {
+    return this.http.delete(
+      this.apiUrl + 'deleteUser/' + id,  this.httpHeaders);
+
   }
 
 }
