@@ -22,8 +22,8 @@ class UserController extends Controller
         $user->birthday = $request->birthday;
         $user->email = $request->email;
         $user->username = $request->username;
-        $user->password = $request->password;
-        
+        $user->password = bcrypt($request->password);
+
         // Salvando a foto
         $image = base64_decode($request->photos);
         $imgName = uniqid();

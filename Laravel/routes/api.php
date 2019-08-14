@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
+//use Symfony\Component\Routing\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +35,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::get('postComment/{id}','PostController@postComment');// Retorna todos os comentarios de um Post
 
 
-
-
-
-
     //Comentario
     Route::get('showComment/{id}','CommentController@showComment');
     Route::get('listComment','CommentController@listComment');
@@ -52,6 +49,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::put('updateUser/{id}','UserController@updateUser');
     Route::delete('deleteUser/{id}','UserController@deleteUser');
 
+    /*/Login
+    Route::post('login', 'API\PassportController@login');
+    Route::post('register', 'API\PassportController@register');
+    Route::group(['middleware'=>'auth:api'],function(){ //Por aqui todas as Rotas refente ao usuario
+        Route::get('logout', 'API\PassportController@logout');
+        Route::post('get-details', 'API\PassportController@getDetails');
+    });*/
 
 
 
