@@ -24,7 +24,7 @@ export class RegisterOptionalPage implements OnInit {
       username: [],
       password: [],
       photos:[this.myPhoto],
-      date:[null],
+      birthday:[null],
       CEP: [null,[Validators.pattern("^[0-9]{5}-[\\d]{3}$")]],
       });
     }
@@ -42,7 +42,7 @@ export class RegisterOptionalPage implements OnInit {
       form.value.password=this.tempUser.password;
       console.log('posted form:');
       console.log(form);
-     //Mandaremos a requisição para a API
+    
       this.usersService.createUser( form.value ).subscribe(
         ( res ) => {
           console.log( res );
@@ -67,24 +67,24 @@ export class RegisterOptionalPage implements OnInit {
     await alert.present();
   }
 
-  openCamera() {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    };
+  // openCamera() {
+  //   const options: CameraOptions = {
+  //     quality: 100,
+  //     destinationType: this.camera.DestinationType.FILE_URI,
+  //     encodingType: this.camera.EncodingType.JPEG,
+  //     mediaType: this.camera.MediaType.PICTURE
+  //   };
  
-    this.camera.getPicture(options).then(
-      (imageData) => {
-        this.myPhoto= 'data:image/jpeg;base64,' + imageData;
-        console.log('data:image/jpeg;base64,' + imageData);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+  //   this.camera.getPicture(options).then(
+  //     (imageData) => {
+  //       this.myPhoto= 'data:image/jpeg;base64,' + imageData;
+  //       console.log('data:image/jpeg;base64,' + imageData);
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  // }
 
   openGallery() {
     const options: CameraOptions = {

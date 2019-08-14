@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import{FormGroup ,FormBuilder,Validators} from '@angular/forms';
+import{FormGroup ,FormBuilder,Validators, ValidatorFn, AbstractControl} from '@angular/forms';
 import { UsersService } from '../services/users.service';
 import {Router} from '@angular/router';
 @Component({
@@ -15,11 +15,23 @@ export class RegisterPage implements OnInit {
       name:[null, [Validators.required, Validators.minLength(10)]],
       email:[null, [Validators.required, Validators.email]],
       username: [null, [Validators.required, Validators.minLength(8)]],
-      password: [null,[Validators.required, Validators.minLength(8)]],
-      c_password: [null,[Validators.required, Validators.minLength(8)]],
+      password: ['',[Validators.required, Validators.minLength(8)]],
+      c_password: ['',[Validators.required, Validators.minLength(8), this.equalto('password') ]],
+
       //TODO:adicionar validator garantindo a igualdade dos campos de password
     });
   }
+
+  equalto(field_name): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+        let input = control.value;
+        let isValid = control.root.value[field_name] == input;
+        if (!isValid)
+            return {'equalTo': {isValid}};
+        else
+            return null;
+    };
+}
 
   createUser( form ) {
     if ( form.status == "VALID" ) {
