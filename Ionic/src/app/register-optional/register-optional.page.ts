@@ -43,7 +43,7 @@ export class RegisterOptionalPage implements OnInit {
       helperMonth=`0${helperDate.getMonth()+1}`;
     }
     helperDay=`${helperDate.getDate()}`;
-    if (helperDate.getDate()<9){
+    if (helperDate.getDate()<10){
       helperDay=`0${helperDate.getDate()}`;
     }
 
@@ -61,7 +61,9 @@ export class RegisterOptionalPage implements OnInit {
       // console.log('formato atual'+form.value.birthday);
       // 
       // form.value.birthday=`${helperDate.getDate()}/${helperDate.getMonth()}/${helperDate.getFullYear()}`;
-      form.value.birthday=this.formatDate(form.value.birthday);
+      if (form.value.birthday != null){
+        form.value.birthday=this.formatDate(form.value.birthday);
+      }
       console.log('posted form:');
       console.log(form);
     

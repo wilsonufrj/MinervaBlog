@@ -25,14 +25,11 @@ export class LoginPage implements OnInit {
 
   	this.usersService.loginUser( form.value ).subscribe(
   			(res) => {
-				console.log( res.message );
-  			localStorage.setItem( 'userToken', res.data.token );
+				console.log( res.success.token );
+  			localStorage.setItem( 'userToken', res.success.token );
         this.alerta();
-				
-
   			}
    		);
-
    	}
 
    }
@@ -52,7 +49,7 @@ export class LoginPage implements OnInit {
          text: 'OK',
          handler: () => {
           console.log('Confirm Okay');
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/feed');
           
 
           
