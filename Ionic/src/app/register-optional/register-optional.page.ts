@@ -57,6 +57,7 @@ export class RegisterOptionalPage implements OnInit {
       form.value.email=this.tempUser.email;
       form.value.username=this.tempUser.username;
       form.value.password=this.tempUser.password;
+      form.value.photos=this.photos;
       // console.log('formato atual'+form.value.birthday);
       // 
       // form.value.birthday=`${helperDate.getDate()}/${helperDate.getMonth()}/${helperDate.getFullYear()}`;

@@ -73,6 +73,7 @@ export class ProfilePage implements OnInit {
     console.log ('id:'+this.profileForm.value.id);
     let id=this.profileForm.value.id;
     form.value.birthday=this.formatDate(form.value.birthday);
+    form.value.photos=this.photos;
     console.log('userItem'+form);
     if ( form.status == "VALID" ) {
       this.usersService.updateUser( id, form.value ).subscribe(
