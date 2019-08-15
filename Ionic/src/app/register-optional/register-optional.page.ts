@@ -43,7 +43,7 @@ export class RegisterOptionalPage implements OnInit {
       helperMonth=`0${helperDate.getMonth()+1}`;
     }
     helperDay=`${helperDate.getDate()}`;
-    if (helperDate.getDay()<10){
+    if (helperDate.getDate()<9){
       helperDay=`0${helperDate.getDate()}`;
     }
 
