@@ -24,8 +24,8 @@
                 <ion-input type="password" placeholder="Senha" formControlName="password"></ion-input>
             </ion-item>
           
-          <ion-text>
-              <p  routerLinkActive="active" class="cadastrar"> <a  routerLink="/register">Criar conta</a></p>
+          <ion-text class="cadastrar" (click)="fazerConta()" >
+              <span>Criar conta</span>
           </ion-text>
     
         <ion-row class="ion-justify-content-center">

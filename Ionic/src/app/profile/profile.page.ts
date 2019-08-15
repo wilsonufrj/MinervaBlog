@@ -94,6 +94,8 @@ export class ProfilePage implements OnInit {
     }
   }
 
+  
+
   async alertDone(){
     const alert= await this.alertController.create({ 
       header:'Perfil alterado!',
@@ -133,6 +135,10 @@ export class ProfilePage implements OnInit {
     );
   }
 
+  sair(){
+    console.log('Confirm Okay');
+
+  }
   
 
   ngOnInit() {
