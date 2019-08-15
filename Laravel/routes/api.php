@@ -53,5 +53,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::delete('deleteUser/{id}','UserController@deleteUser');
 
 
+    Route::post('login','API\PassportController@login');
+
+    //Usar essa rota para o user
+    Route::group(['middleware' => 'auth:api'], function() {
+        Route::get('logout', 'API\PassportController@logout');
+        Route::post('get-details', 'API\PassportController@getDetails');
+});
+
+
 
 
