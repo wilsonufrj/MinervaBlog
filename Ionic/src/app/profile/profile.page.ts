@@ -94,7 +94,16 @@ export class ProfilePage implements OnInit {
     }
   }
 
-  
+  logout() {
+    this.usersService.deslogarUsuario().subscribe(
+      (res) => {
+        console.log( res.message );
+        localStorage.removeItem( 'userToken' )
+        localStorage.removeItem( 'userLogged' );
+        this.router.navigate(['feed']);
+      }
+    );
+  }
 
   async alertDone(){
     const alert= await this.alertController.create({ 
@@ -135,10 +144,6 @@ export class ProfilePage implements OnInit {
     );
   }
 
-  sair(){
-    console.log('Confirm Okay');
-
-  }
   
 
   ngOnInit() {
