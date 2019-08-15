@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import{FormGroup ,FormBuilder,Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AlertController} from '@ionic/angular';
-// import { UsersService } from '../services/users.service';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-login',
@@ -12,29 +12,30 @@ import {AlertController} from '@ionic/angular';
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
   //declarar  public usersService: UsersService no construtor
-  constructor(public formbuilder:FormBuilder, private router: Router, public alertController:AlertController  ) { 
+  constructor(public formbuilder:FormBuilder, private router: Router, public alertController:AlertController, public usersService: UsersService ) { 
     this.loginForm = this.formbuilder.group({
   		username: [null, [Validators.required]],
   		password: [null, [Validators.required, Validators.minLength(8)]],
   	});
   }
-  // loginUsuario( form ) {
+   loginUsuario( form ) {
 
-  // 	if ( form.status == "VALID" ) {
+  	if ( form.status == "VALID" ) {
+      console.log(form);
 
-  // 		this.userService.logarUsuario( form.value ).subscribe(
-  // 			(res) => {
-	// 			console.log( res.message );
-  // 			localStorage.setItem( 'userToken', res.data.token );
-  //       this.alerta();
-	// 			
+  	this.usersService.loginUser( form.value ).subscribe(
+  			(res) => {
+				console.log( res.message );
+  			localStorage.setItem( 'userToken', res.data.token );
+        this.alerta();
+				
 
-  // 			}
-  // 		);
+  			}
+   		);
 
-  // 	}
+   	}
 
-  // }
+   }
   submitForm(form){
     console.log(form);
     this.alerta();
