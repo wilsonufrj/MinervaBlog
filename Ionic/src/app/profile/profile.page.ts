@@ -22,8 +22,8 @@ export class ProfilePage implements OnInit {
   ) 
   {
     this.profileForm= this.formbuilder.group({
-      id:['1'],
-      name:[, [Validators.required, Validators.minLength(10)]],
+      id:[''],
+      name:[null, [Validators.required, Validators.minLength(10)]],
       email:[null, [Validators.required, Validators.email]],
       username: [null, [Validators.required, Validators.minLength(8)]],
       password: [null,[Validators.required, Validators.minLength(8)]],
@@ -49,9 +49,9 @@ export class ProfilePage implements OnInit {
 
     return `${helperDay}/${helperMonth}/${helperDate.getFullYear()}`;
   }
-  showUser(id):void{
-    console.log(id);
-    this.usersService.showUser(id).subscribe(
+  getDetails():void{
+  
+    this.usersService.getDetails().subscribe(
       (res)=>{
         this.profileForm.value.id=res.data.id;
         this.profileForm.value.name=res.data.name;
@@ -68,15 +68,6 @@ export class ProfilePage implements OnInit {
     }
     );
   }
-
-  // onClickAtualizar(){
-  //   this.usersService.updateUser(this.profileForm.value.id, this.profile).subscribe(
-  //     (res)=>{
-  //       console.log(res);
-  //       this.alertDone();
-  //     }
-  //     );
-  // }
 
   updateUser( form ) { 
     console.log ('id:'+this.profileForm.value.id);
@@ -119,11 +110,6 @@ export class ProfilePage implements OnInit {
     });
     await alert.present();
   }
-  // onClickDeletar(){
-  //   this.usersService.deleteUser(this.profileForm.value.id).subscribe(
-  //     (res)=>{console.log(res);}
-  //     );
-  // }
 
   openGallery() {
     const options: CameraOptions = {
@@ -147,7 +133,7 @@ export class ProfilePage implements OnInit {
   
 
   ngOnInit() {
-    
+    this.getDetails();
     // this.myPhoto='/assets/user.png';
   }
 

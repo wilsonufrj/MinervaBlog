@@ -77,9 +77,15 @@ export class UsersService {
 
   deslogarUsuario(): Observable<any> {
 
-    this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken');
-    
+    //this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken') n]ao sei se back está pronta para receber isso 
     return this.http.get( this.apiUrl + 'logout', this.httpHeaders );
+    
+  }
+
+  getDetails(): Observable<any> {
+
+  // this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken') mesmo motivo
+    return this.http.get( this.apiUrl + 'lget-details', this.httpHeaders );
     
   }
 
