@@ -22,8 +22,8 @@ export class ProfilePage implements OnInit {
   ) 
   {
     this.profileForm= this.formbuilder.group({
-      id:[],
-      name:[null, [Validators.required, Validators.minLength(10)]],
+      id:['1'],
+      name:[, [Validators.required, Validators.minLength(10)]],
       email:[null, [Validators.required, Validators.email]],
       username: [null, [Validators.required, Validators.minLength(8)]],
       password: [null,[Validators.required, Validators.minLength(8)]],
@@ -33,7 +33,22 @@ export class ProfilePage implements OnInit {
       
     });
   }
+  formatDate(date){
+    let helperDate = new Date(Date.parse(date));
+    console.log(helperDate);
+    let helperDay:string;
+    let helperMonth:string;
+    helperMonth=`${helperDate.getMonth()+1}`;
+    if (helperDate.getMonth()<9) {
+      helperMonth=`0${helperDate.getMonth()+1}`;
+    }
+    helperDay=`${helperDate.getDate()}`;
+    if (helperDate.getDate()<9){
+      helperDay=`0${helperDate.getDate()}`;
+    }
 
+    return `${helperDay}/${helperMonth}/${helperDate.getFullYear()}`;
+  }
   showUser(id):void{
     console.log(id);
     this.usersService.showUser(id).subscribe(
@@ -54,13 +69,29 @@ export class ProfilePage implements OnInit {
     );
   }
 
-  onClickAtualizar(){
-    this.usersService.updateUser(this.profileForm.value.id, this.profile).subscribe(
-      (res)=>{
-        console.log(res);
-        this.alertDone();
-      }
+  // onClickAtualizar(){
+  //   this.usersService.updateUser(this.profileForm.value.id, this.profile).subscribe(
+  //     (res)=>{
+  //       console.log(res);
+  //       this.alertDone();
+  //     }
+  //     );
+  // }
+
+  updateUser( form ) { 
+    console.log ('id:'+this.profileForm.value.id);
+    let id=this.profileForm.value.id;
+    form.value.birthday=this.formatDate(form.value.birthday);
+    console.log('userItem'+form);
+    if ( form.status == "VALID" ) {
+      this.usersService.updateUser( id, form.value ).subscribe(
+        ( res ) => {
+          console.log( res );
+          this.alertDone();
+          
+        }
       );
+    }
   }
 
   async alertDone(){
@@ -105,12 +136,7 @@ export class ProfilePage implements OnInit {
   
 
   ngOnInit() {
-    this.route.params.subscribe(
-      params =>{
-        console.log(params['id']);
-        this.showUser(params['id']);
-      }
-    );
+    
     // this.myPhoto='/assets/user.png';
   }
 

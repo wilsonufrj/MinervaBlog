@@ -10,15 +10,22 @@
   </ion-header>
 <ion-content>
 
-<form [formGroup]="profileForm">
+<form [formGroup]="profileForm" (ngSubmit)="updateUser(profileForm)">
 
     <ion-list>
-      <ion-item>
-          <img clas ="img" *ngIf="photos" src="data:image/jpeg;base64,{{photos}}" alt="" srcset="">
-      </ion-item>
-      <ion-row class="ion-justify-content-center" > 
-        <ion-button (click)="openGallery()"  > <ion-icon name="camera"></ion-icon>Abrir galeria</ion-button>
-      </ion-row>
+     
+        <div *ngIf="photos;else other_content">
+        
+          <img clas ="img" src="data:image/jpeg;base64,{{photos}}" alt="" srcset="">
+         </div>
+        <ng-template #other_content>
+          <img clas ="img" src="/assets/user.png" alt="" srcset="">
+        </ng-template>
+        <ion-row class="ion-justify-content-center" > 
+         <ion-button  class="btnGaleria" (click)="openGallery()"  > <ion-icon name="camera"></ion-icon>Abrir galeria</ion-button>
+        </ion-row>
+      
+      
       <ion-item>
         <ion-label position="floating">Nome</ion-label>
         <ion-input type="text" formControlName="name"  ></ion-input>
@@ -53,7 +60,7 @@
     </ion-list>
 
     <ion-row class="ion-justify-content-center">
-      <ion-button (click)="onClickAtualizar()"  >Salvar</ion-button>
+      <ion-button type="submit" >Salvar</ion-button>
     </ion-row>
   </form>
 </ion-content>

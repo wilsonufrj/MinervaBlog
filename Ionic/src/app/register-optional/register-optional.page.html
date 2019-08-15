@@ -16,10 +16,13 @@
   <form [formGroup]= "registerOpForm" (ngSubmit)="createUser(registerOpForm)" >
     
     <!-- <ion-row class="ion-justify-content-center" width="60vw"><img src="{{myPhoto}}" width="60vw" ></ion-row> -->
-    <div >
+    <div *ngIf="photos;else other_content">
         
-        <img clas ="img"*ngIf="photos" src="data:image/jpeg;base64,{{photos}}" alt="" srcset="">
+        <img clas ="img" src="data:image/jpeg;base64,{{photos}}" alt="" srcset="">
     </div>
+    <ng-template #other_content>
+      <img clas ="img" src="/assets/user.png" alt="" srcset="">
+    </ng-template>
     <ion-row class="ion-justify-content-center" > 
       <ion-button (click)="openGallery()" > <ion-icon name="camera"></ion-icon>Abrir galeria</ion-button>
     </ion-row>

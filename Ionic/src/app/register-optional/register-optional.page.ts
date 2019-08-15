@@ -99,7 +99,7 @@ export class RegisterOptionalPage implements OnInit {
  
     this.camera.getPicture(options).then(
       (imageData) => {
-        this.photos = 'data:image/jpeg;base64,' + imageData;
+        this.photos =  imageData;
         console.log('data:image/jpeg;base64,' + imageData);
       },
       (error) => {
@@ -115,7 +115,6 @@ export class RegisterOptionalPage implements OnInit {
   }
 
   ngOnInit() {
-    this.photos='/assets/user.png';
     this.getUser();
   }
 
