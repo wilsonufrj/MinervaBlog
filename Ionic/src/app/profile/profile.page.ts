@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import { UsersService } from '../services/users.service';
 import { templateSourceUrl } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
+import {AlertController} from '@ionic/angular';
 
 
 @Component({
@@ -14,10 +15,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProfilePage implements OnInit {
   profile;
-  myPhoto;
+  photos;
   profileForm: FormGroup;
   constructor(
-    private camera:Camera, public formbuilder:FormBuilder, private router: Router, public usersService: UsersService, private route: ActivatedRoute 
+    private camera:Camera, public formbuilder:FormBuilder, private router: Router, public usersService: UsersService, private route: ActivatedRoute, public alertController:AlertController
   ) 
   {
     this.profileForm= this.formbuilder.group({
@@ -26,7 +27,7 @@ export class ProfilePage implements OnInit {
       email:[null, [Validators.required, Validators.email]],
       username: [null, [Validators.required, Validators.minLength(8)]],
       password: [null,[Validators.required, Validators.minLength(8)]],
-      photos:[this.myPhoto],
+      photos:[this.photos],
       birthday:[null],
       CEP: [null,[Validators.pattern("^[0-9]{5}-[\\d]{3}$")]],
       
@@ -55,14 +56,32 @@ export class ProfilePage implements OnInit {
 
   onClickAtualizar(){
     this.usersService.updateUser(this.profileForm.value.id, this.profile).subscribe(
-      (res)=>{console.log(res);}
+      (res)=>{
+        console.log(res);
+        this.alertDone();
+      }
       );
   }
-  onClickDeletar(){
-    this.usersService.deleteUser(this.profileForm.value.id).subscribe(
-      (res)=>{console.log(res);}
-      );
+
+  async alertDone(){
+    const alert= await this.alertController.create({ 
+      header:'Perfil alterado!',
+      message:'Agradecemos por manter suas insformações atualizadas.',
+      buttons:[{
+        text: 'OK',
+        handler: () => {
+          console.log('Confirm Okay');
+
+        }
+      }] 
+    });
+    await alert.present();
   }
+  // onClickDeletar(){
+  //   this.usersService.deleteUser(this.profileForm.value.id).subscribe(
+  //     (res)=>{console.log(res);}
+  //     );
+  // }
 
   openGallery() {
     const options: CameraOptions = {
@@ -74,7 +93,7 @@ export class ProfilePage implements OnInit {
  
     this.camera.getPicture(options).then(
       (imageData) => {
-        this.myPhoto = 'data:image/jpeg;base64,' + imageData;
+        this.photos = imageData;
         console.log('data:image/jpeg;base64,' + imageData);
       },
       (error) => {

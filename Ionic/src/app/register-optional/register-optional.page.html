@@ -18,10 +18,10 @@
     <!-- <ion-row class="ion-justify-content-center" width="60vw"><img src="{{myPhoto}}" width="60vw" ></ion-row> -->
     <div >
         
-        <img clas ="img" src="{{myPhoto}}">
+        <img clas ="img"*ngIf="photos" src="data:image/jpeg;base64,{{photos}}" alt="" srcset="">
     </div>
     <ion-row class="ion-justify-content-center" > 
-      <ion-button (click)="openGallery()"  shape="round" >Abrir galeria</ion-button>
+      <ion-button (click)="openGallery()" > <ion-icon name="camera"></ion-icon>Abrir galeria</ion-button>
     </ion-row>
     <ion-list>
       <ion-item>
@@ -35,8 +35,8 @@
       </ion-item>
     </ion-list>
     <ion-row class="ion-justify-content-center">
-      <ion-button (click)="back()" shape="round" >Voltar</ion-button>        
-      <ion-button type="submit" shape="round" >Cadastrar</ion-button>
+      <ion-button (click)="back()"  >Voltar</ion-button>        
+      <ion-button type="submit"  >Cadastrar</ion-button>
     </ion-row>
   </form>
 </ion-content>

@@ -14,10 +14,10 @@
 
     <ion-list>
       <ion-item>
-          <img clas ="img" src="{{myPhoto}}">
+          <img clas ="img" *ngIf="photos" src="data:image/jpeg;base64,{{photos}}" alt="" srcset="">
       </ion-item>
       <ion-row class="ion-justify-content-center" > 
-        <ion-button (click)="openGallery()"  shape="round" >Abrir galeria</ion-button>
+        <ion-button (click)="openGallery()"  > <ion-icon name="camera"></ion-icon>Abrir galeria</ion-button>
       </ion-row>
       <ion-item>
         <ion-label position="floating">Nome</ion-label>
@@ -53,8 +53,7 @@
     </ion-list>
 
     <ion-row class="ion-justify-content-center">
-      <ion-button (click)="onClickAtualizar()" shape="round" >Salvar</ion-button>
-      <ion-button (click)="onClickDeletar()" shape="round" >Deletar perfil</ion-button>
+      <ion-button (click)="onClickAtualizar()"  >Salvar</ion-button>
     </ion-row>
   </form>
 </ion-content>

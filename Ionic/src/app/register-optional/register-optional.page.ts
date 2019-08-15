@@ -13,7 +13,7 @@ import { templateSourceUrl } from '@angular/compiler';
   styleUrls: ['./register-optional.page.scss'],
 })
 export class RegisterOptionalPage implements OnInit {
-  myPhoto;
+  photos;
   registerOpForm: FormGroup;
   tempUser;
 
@@ -23,7 +23,7 @@ export class RegisterOptionalPage implements OnInit {
       email:[],
       username: [],
       password: [],
-      photos:[this.myPhoto],
+      photos:[this.photos],
       birthday:[null],
       CEP: [null,[Validators.pattern("^[0-9]{5}-[\\d]{3}$")]],
       });
@@ -99,7 +99,7 @@ export class RegisterOptionalPage implements OnInit {
  
     this.camera.getPicture(options).then(
       (imageData) => {
-        this.myPhoto = 'data:image/jpeg;base64,' + imageData;
+        this.photos = 'data:image/jpeg;base64,' + imageData;
         console.log('data:image/jpeg;base64,' + imageData);
       },
       (error) => {
@@ -115,7 +115,7 @@ export class RegisterOptionalPage implements OnInit {
   }
 
   ngOnInit() {
-    this.myPhoto='/assets/user.png';
+    this.photos='/assets/user.png';
     this.getUser();
   }
 
