@@ -12,7 +12,7 @@ import { PostService } from '../services/post.service';
 })
 export class CreatePostPage implements OnInit {
   newPostForm:FormGroup;
-  image;
+  photos;
 
   OpenGallery() {
     const options: CameraOptions = {
@@ -23,7 +23,7 @@ export class CreatePostPage implements OnInit {
     };
     this.camera.getPicture(options).then(
       (imageData) => {
-        this.image =  'data:image/jpeg;base64,'+ imageData;
+        this.photos =  imageData;
         console.log('data:image/jpeg;base64,' + imageData);
     },
     (error) => {
@@ -35,14 +35,14 @@ export class CreatePostPage implements OnInit {
   constructor(public formbuilder:FormBuilder, private router: Router,private camera: Camera,public postService: PostService) {
     this.newPostForm= this.formbuilder.group({
       id: null,//atualizar para id do user
-      image: [null, this.image],     
+      photos: [null, this.photos],     
       title:[null, [Validators.required, Validators.minLength(10)]],
-      text:[null, [Validators.required, Validators.minLength(10)]],
+      content:[null, [Validators.required, Validators.minLength(10)]],
     });
   }
 
   onSubmit( form ) { 
-    console.log(form);
+    console.log('posted item: '+form);
     if ( form.status == "VALID" ) {
       this.postService.createPost( form.value ).subscribe(
         ( res ) => {

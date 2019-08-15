@@ -33,10 +33,24 @@ export class RegisterOptionalPage implements OnInit {
     this.router.navigate([`register`]);
   }
 
+  formatDate(date){
+    let helperDate = new Date(Date.parse(date));
+    console.log(helperDate);
+    let helperDay:string;
+    let helperMonth:string;
+    helperMonth=`${helperDate.getMonth()+1}`;
+    if (helperDate.getMonth()<9) {
+      helperMonth=`0${helperDate.getMonth()+1}`;
+    }
+    helperDay=`${helperDate.getDate()}`;
+    if (helperDate.getDate()<9){
+      helperDay=`0${helperDate.getDate()}`;
+    }
 
+    return `${helperDay}/${helperMonth}/${helperDate.getFullYear()}`;
+  }
 
   createUser( form ) {
-    let helperDate;
     console.log('trying');
     if ( form.status == "VALID" ) {
       form.value.name=this.tempUser.name;
@@ -44,9 +58,9 @@ export class RegisterOptionalPage implements OnInit {
       form.value.username=this.tempUser.username;
       form.value.password=this.tempUser.password;
       // console.log('formato atual'+form.value.birthday);
-      helperDate = new Date(Date.parse(form.value.birthday ));
-      form.value.birthday=`${helperDate.getDate()}/${helperDate.getMonth()}/${helperDate.getFullYear()}`;
-
+      // 
+      // form.value.birthday=`${helperDate.getDate()}/${helperDate.getMonth()}/${helperDate.getFullYear()}`;
+      form.value.birthday=this.formatDate(form.value.birthday);
       console.log('posted form:');
       console.log(form);
     
