@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
   //declarar  public usersService: UsersService no construtor
   constructor(public formbuilder:FormBuilder, private router: Router, public alertController:AlertController, public usersService: UsersService ) { 
     this.loginForm = this.formbuilder.group({
-  		username: [null, [Validators.required]],
+  		email: [null, [Validators.required, Validators.email]],
   		password: [null, [Validators.required, Validators.minLength(8)]],
   	});
   }
