@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         App\Providers\ReposnseJsonProvider::class,
         LaravelLegends\PtBrValidator\ValidatorProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
+
 
         /*
          * Package Service Providers...

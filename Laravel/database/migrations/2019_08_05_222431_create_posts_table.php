@@ -17,7 +17,6 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
             $table->string('photos')->nullable();
-            //É necessario pesquisar pq não funciona para textos grandes
             $table->longText('content');
             $table->string('title');
             $table->timestamps();

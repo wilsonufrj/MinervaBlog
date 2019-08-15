@@ -22,14 +22,22 @@ class UserController extends Controller
         $user->birthday = $request->birthday;
         $user->email = $request->email;
         $user->username = $request->username;
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
+
+        /*if($request->photos == null ){
+                $padrao = base64_encode(user.png);
+                $image = base64_decode($padrao);
+        }else{
+            $image = base64_decode($request->photos);
+        }*/
+            // Salvando a foto
+            $image = base64_decode($request->photos);
+
+            $imgName = uniqid().'.png';
+            $path = storage_path('app/UserPhotos/'.$imgName);
+            file_put_contents($path,$image);
+            $user->photos= $imgName;
         
-        // Salvando a foto
-        $image = base64_decode($request->photos);
-        $imgName = uniqid();
-        $path = storage_path('app/UserPhotos/'.$imgName);
-        file_put_contents($path,$image);
-        $user->photos= $imgName;
 
         $user->save();
 
@@ -91,4 +99,5 @@ class UserController extends Controller
         //Fazer um if se o usuario não tiver nenhum post *Opcional
         return User::find($id)->bloggerPost;
     }
+    
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Storage;
 
 class CreateUsersTable extends Migration
 {
@@ -17,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('CEP')->nullable();
-            $table->string('birthday')->nullable();;
+            $table->string('birthday')->nullable();
             $table->string('email');
             $table->string('username');
             $table->string('password');
