@@ -85,7 +85,7 @@ export class ProfilePage implements OnInit {
         this.user.email=res.success.email;
         // this.profileForm.value.password= res.success.password; //não muda nessa pagina
         this.user.photos= res.success.photos;
-        this.user.birthday = res.success.birthday; 
+        // this.user.birthday = res.success.birthday; 
         this.user.CEP= res.success.CEP;
         console.log('form:');
         console.log(this.profileForm);
