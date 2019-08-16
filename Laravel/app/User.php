@@ -39,7 +39,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //relação n-n que representa os likes *Errado
+    //relação n-n que representa os likes 
     public function users(){
         return $this->belongsToMany('App\Comment');
     }

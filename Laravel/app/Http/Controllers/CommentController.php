@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
 use App\Comment;
+use App\User;
 
 class CommentController extends Controller
 {
 
     //Cria um comentario (Usuario e Blogger somente)
     public function createComment(CommentRequest $request){
-        $comment = new Comment;
+        $comment = new Comment; 
+
 
         $comment->comment_text = $request->comment_text;
 
@@ -55,6 +58,7 @@ class CommentController extends Controller
         Comment::destroy($id);
         return response()->json(['Comment deletado']);
     }
+
 
     //Retorna quem fez o comentario
     public function user($id){
