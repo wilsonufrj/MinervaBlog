@@ -79,8 +79,10 @@ export class EditPostPage implements OnInit {
   onSubmit( form ) { 
     console.log ('id:'+this.post.id);
     let id=this.post.id;
-    console.log('postedItem'+form);
+    console.log('posted item: ');
+    console.log(form.value);
     if ( form.status == "VALID" ) {
+      form.value.photos=this.photos;
       this.postService.updatePost( form.value,id ).subscribe(
         ( res ) => {
           console.log( res );

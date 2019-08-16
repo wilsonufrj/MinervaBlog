@@ -42,8 +42,10 @@ export class CreatePostPage implements OnInit {
   }
 
   onSubmit( form ) { 
-    console.log('posted item: '+form);
+    console.log('posted item: ');
+    console.log(form.value);
     if ( form.status == "VALID" ) {
+      form.value.photos=this.photos;
       this.postService.createPost( form.value ).subscribe(
         ( res ) => {
           console.log( res );

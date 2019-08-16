@@ -28,36 +28,36 @@
       
       <ion-item>
         <ion-label position="floating">Nome</ion-label>
-        <ion-input type="text" formControlName="name"  ></ion-input>
+        <ion-input type="text" value="{{this.profileForm.value.name}}" formControlName="name"  ></ion-input>
       </ion-item>
 
         <ion-item>
             <ion-label position="floating">Email</ion-label>
-            <ion-input type="email"  formControlName="email" ></ion-input>
+            <ion-input type="email"  formControlName="email" value="{{this.profileForm.value.email}}"></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-label position="floating">Usuário</ion-label>
-            <ion-input type="text"  formControlName="username"  ></ion-input>
+            <ion-label position="floating" >Usuário</ion-label>
+            <ion-input type="text" value="{{this.profileForm.value.username}}"  formControlName="username"  ></ion-input>
         </ion-item>
-
+<!-- 
         <ion-item>
             <ion-label position="floating">Senha</ion-label>
             <ion-input type="password"  formControlName="password"></ion-input>
-        </ion-item>
+        </ion-item> -->
 
         <ion-item>
             <ion-label>Data de nascimento</ion-label>
-            <ion-datetime value="" placeholder="Selecionar Data"  formControlName="birthday"></ion-datetime>
+            <ion-datetime value="" placeholder="Selecionar Data"  formControlName="birthday" value="{{this.profileForm.value.birthday}}"></ion-datetime>
           </ion-item>
     
           <ion-item>
              <ion-label position="floating"  >CEP</ion-label>
-            <ion-input type="text"  placeholder="#####-###"  formControlName="CEP" ></ion-input>
+            <ion-input type="text"  placeholder="#####-###"  formControlName="CEP" value="{{this.profileForm.value.CEP}}" ></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-label (click)="logout()" >Sair</ion-label>
+            <ion-button (click)="logout()" >Sair</ion-button>
 
           </ion-item>
 

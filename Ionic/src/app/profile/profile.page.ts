@@ -43,7 +43,7 @@ export class ProfilePage implements OnInit {
       helperMonth=`0${helperDate.getMonth()+1}`;
     }
     helperDay=`${helperDate.getDate()}`;
-    if (helperDate.getDate()<9){
+    if (helperDate.getDate()<10){
       helperDay=`0${helperDate.getDate()}`;
     }
 
@@ -53,14 +53,16 @@ export class ProfilePage implements OnInit {
   
     this.usersService.getDetails().subscribe(
       (res)=>{
-        this.profileForm.value.id=res.data.id;
-        this.profileForm.value.name=res.data.name;
-        this.profileForm.value.email= res.data.email;
-        this.profileForm.value.username= res.data.email;
-        this.profileForm.value.password= res.data.password;
-        this.profileForm.value.photos= res.data.photos;
-        this.profileForm.value.birthday = res.data.birthday;
-        this.profileForm.value.CEP= res.data.CEP;
+        console.log(res);
+        this.profileForm.value.id=res.success.id;
+        this.profileForm.value.name=res.success.name;
+        this.profileForm.value.username=res.success.username;
+        this.profileForm.value.email=res.success.email;
+        // this.profileForm.value.password= res.success.password; //não muda nessa pagina
+        this.profileForm.value.photos= res.success.photos;
+        // this.profileForm.value.birthday = res.success.birthday; //erro de parse vai ter que formatar como iso eu acho
+        this.profileForm.value.CEP= res.success.CEP;
+        console.log('form:');
         console.log(this.profileForm);
     },
     (error) => {
@@ -72,7 +74,9 @@ export class ProfilePage implements OnInit {
   updateUser( form ) { 
     console.log ('id:'+this.profileForm.value.id);
     let id=this.profileForm.value.id;
-    form.value.birthday=this.formatDate(form.value.birthday);
+    if(form.value.birthday!=null){
+      form.value.birthday=this.formatDate(form.value.birthday);
+    }
     form.value.photos=this.photos;
     console.log('userItem'+form);
     if ( form.status == "VALID" ) {
