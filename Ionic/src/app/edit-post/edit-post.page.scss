@@ -4,3 +4,29 @@
 .btn{
     padding-top:2em;
 }
+ion-button{
+    --background:#FBAF3F;
+    --color: #07203F;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    
+}
+
+ion-title{
+    font-family: 'Volkhov', serif;
+    color: #FBAF3F;
+    font-size: 1.5em;
+    //background-color: #07203F;
+  
+    
+
+}
+
+ion-input{
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+}
+ion-textarea{
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+}

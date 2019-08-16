@@ -20,7 +20,7 @@
     </ion-item>
   <div class="btn center" >
     <img *ngIf="photos" src="data:image/jpeg;base64,{{photos}}" alt="" srcset="">
-  <ion-button (click)="OpenGallery()">
+  <ion-button  (click)="OpenGallery()">
     <ion-icon name="camera"></ion-icon> Adicionar imagem
   </ion-button>
   <ion-button (click)="confirmDelete()" color="danger">
