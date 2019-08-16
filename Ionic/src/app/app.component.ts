@@ -25,6 +25,11 @@ export class AppComponent {
       title: 'Login',
       url: '/login',
       icon: 'md-person'
+    },
+    {
+      title: 'Profile',
+      url: '/profile',
+      icon: 'md-person'
     }
     
 

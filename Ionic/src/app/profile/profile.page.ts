@@ -93,6 +93,7 @@ export class ProfilePage implements OnInit {
     },
     (error) => {
       console.log(error);
+      this.router.navigate(['login']);
     }
     );
   }
@@ -121,7 +122,7 @@ export class ProfilePage implements OnInit {
   logout() {
     this.usersService.deslogarUsuario().subscribe(
       (res) => {
-        console.log( res.message );
+        // console.log( res.message );
         localStorage.removeItem( 'userToken' )
         localStorage.removeItem( 'userLogged' );
         this.router.navigate(['feed']);

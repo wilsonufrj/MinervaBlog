@@ -40,12 +40,12 @@ class UserRequest extends FormRequest
         //Formato da data DD/MM/YYYY
         if($this->isMethod('put')){
             return [
-                'name'=>'string',
-                'CEP'=>'string|formato_cep',
-                'birthday'=>'required|data',
+                'name'=>'required|string',
+                'CEP'=>'formato_cep|nullable',
+                'birthday'=>'data|nullable',
                 'email' => 'required|email',
-                'username' => 'required|alpha',
-                'password' => 'required|alpha-num',
+                'username' => 'required|alpha-num',
+                // 'password' => 'required|alpha-num',
                 
             ];
         }

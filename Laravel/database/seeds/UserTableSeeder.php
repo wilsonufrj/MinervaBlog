@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
             'birthday'=>'12/3/1997',
             'email'=>'waramos97@gmail.com',
             'username'=>'wilsao',
-            'password'=>'123456',
+            'password'=>'12345678',
             'is_blogger'=>true
         ]);
 
@@ -27,7 +27,7 @@ class UserTableSeeder extends Seeder
             'birthday'=>'3/5/2000',
             'email'=>'polyana@gmail.com',
             'username'=>'wilsao',
-            'password'=>'123456',
+            'password'=>'12345678',
             'is_blogger'=>true
         ]);
 
@@ -37,7 +37,7 @@ class UserTableSeeder extends Seeder
             'birthday'=>'2/7/2001',
             'email'=>'breno@gmail.com',
             'username'=>'wilsao',
-            'password'=>'123456',
+            'password'=>'12345678',
             'is_blogger'=>true
         ]);
 

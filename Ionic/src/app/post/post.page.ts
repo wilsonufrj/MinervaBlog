@@ -30,12 +30,12 @@ export class PostPage implements OnInit {
     this.postService.getPost(id).subscribe(
       (res) => {
         console.log(res);
-        this.post.id = res.data.id;
-        this.creatorId = res.data.user_id;
-        this.post.title = res.data.title;
-        this.post.content = res.data.content;
-        this.post.photos = res.data.photos;
-        this.dateFormatHelper =new Date(res.data.updated_at);
+        this.post.id = res.id;
+        this.creatorId = res.user_id;
+        this.post.title = res.title;
+        this.post.content = res.content;
+        this.post.photos = res.photos;
+        this.dateFormatHelper =new Date(res.updated_at);
         this.post.date = `${this.dateFormatHelper.getDate()}/${this.dateFormatHelper.getMonth()+1}/${this.dateFormatHelper.getFullYear()}`;
       },
       (error) => {
