@@ -11,6 +11,9 @@ use App\Post;
 
 class PostController extends Controller
 {
+    /*public function construct(){
+        $this->middleware('blogger_middleware');
+    }*/
 
     //Criar um post (Somente para o Blogger)**Falta Atualizar
     public function createPost(PostRequest $request){
@@ -46,10 +49,8 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
         $path = storage_path('app/PostPhotos/'.$post->image);
-        // $post->image = download$path;
-
         if($post){
-            return response()->success($post);
+            return response()->json($post); 
         }else{
             $data = "Post nao encontrado,verifique o id novamente";
             return response()->error($data,400);
@@ -91,5 +92,6 @@ class PostController extends Controller
     public function postComment($id){
         return Post::find($id)->postComment;
     }
+
 
 }

@@ -24,12 +24,12 @@ export class ProfilePage implements OnInit {
   ) 
   {
     this.profileForm= this.formbuilder.group({
-      id:[''],
+      id:['',this.user.id],
       name:[null, [Validators.required, Validators.minLength(10)]],
       email:[null, [Validators.required, Validators.email]],
       username: [null, [Validators.required, Validators.minLength(8)]],
-      password: [null,[Validators.required, Validators.minLength(8)]],
-      photos:[this.photos],
+      // password: [null],
+      photos:[null,this.photos],
       birthday:[null],
       CEP: [null,[Validators.pattern("^[0-9]{5}-[\\d]{3}$")]],
       
@@ -98,13 +98,15 @@ export class ProfilePage implements OnInit {
   }
 
   updateUser( form ) { 
-    console.log ('id:'+this.profileForm.value.id);
-    let id=this.profileForm.value.id;
+    console.log ('id:'+this.user.id);
+    let id=this.user.id;
+    form.value.id=this.user.id;
     if(form.value.birthday!=null){
       form.value.birthday=this.formatDate(form.value.birthday);
     }
     form.value.photos=this.photos;
-    console.log('userItem'+form);
+    console.log('userItem');
+    console.log(form);
     if ( form.status == "VALID" ) {
       this.usersService.updateUser( id, form.value ).subscribe(
         ( res ) => {
