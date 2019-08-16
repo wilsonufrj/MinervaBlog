@@ -3,6 +3,7 @@ import{FormGroup ,FormBuilder,Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import{Camera, CameraOptions} from '@ionic-native/camera/ngx';
 import { PostService } from '../services/post.service';
+import { UsersService } from '../services/users.service';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { PostService } from '../services/post.service';
 export class CreatePostPage implements OnInit {
   newPostForm:FormGroup;
   photos;
+  id;
 
   OpenGallery() {
     const options: CameraOptions = {
@@ -32,7 +34,7 @@ export class CreatePostPage implements OnInit {
   }
   
 
-  constructor(public formbuilder:FormBuilder, private router: Router,private camera: Camera,public postService: PostService) {
+  constructor(public formbuilder:FormBuilder, private router: Router,private camera: Camera,public postService: PostService,public usersService: UsersService) {
     this.newPostForm= this.formbuilder.group({
       id: null,//atualizar para id do user
       photos: [null, this.photos],     
@@ -41,11 +43,23 @@ export class CreatePostPage implements OnInit {
     });
   }
 
+  getUserId(){
+    this.usersService.getDetails().subscribe(
+      (res)=>{
+        console.log(res);
+        this.id=res.success.id;
+    },
+    (error) => {
+      console.log(error);
+    });
+  }
+
   onSubmit( form ) { 
     console.log('posted item: ');
     console.log(form.value);
     if ( form.status == "VALID" ) {
       form.value.photos=this.photos;
+      form.value.id=this.id;
       this.postService.createPost( form.value ).subscribe(
         ( res ) => {
           console.log( res );
@@ -56,6 +70,7 @@ export class CreatePostPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getUserId();
   }
 
 }

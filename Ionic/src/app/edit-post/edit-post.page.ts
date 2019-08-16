@@ -100,8 +100,6 @@ export class EditPostPage implements OnInit {
         this.post.title = res.data.title;
         this.post.content = res.data.content;
         this.photos = res.data.photos;
-        // this.dateFormatHelper =new Date(res.data.updated_at);
-        // this.post.date = `${this.dateFormatHelper.getDate()}/${this.dateFormatHelper.getMonth()}/${this.dateFormatHelper.getFullYear()}`;
       },
       (error) => {
         console.log(error);

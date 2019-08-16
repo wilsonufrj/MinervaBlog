@@ -33,7 +33,7 @@
         <ion-button (click)="back()" shape="round" >Voltar</ion-button>        
       </ion-row>
     </ion-grid>
-    <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="editPost()" color="var(--ion-color-secondary)">
+    <ion-fab vertical="top" horizontal="end" slot="fixed" **ngIf="canEdit()" (click)="editPost()" color="var(--ion-color-secondary)">
         <ion-fab-button>
           <ion-icon name="create"></ion-icon>
         </ion-fab-button>

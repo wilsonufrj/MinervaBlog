@@ -58,7 +58,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     //Usar essa rota para o user
     Route::group(['middleware' => 'auth:api'], function() {
         Route::get('logout', 'API\PassportController@logout');
-        Route::post('get-details', 'API\PassportController@getDetails');
+        Route::get('get-details', 'API\PassportController@getDetails');
 });
 
 

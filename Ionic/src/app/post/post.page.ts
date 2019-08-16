@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from "@angular/router";
+import { UsersService } from '../services/users.service';
+
 
 
 @Component({
@@ -11,7 +13,7 @@ import { Router } from "@angular/router";
 })
 export class PostPage implements OnInit {
 
-  constructor(public postService: PostService, private route: ActivatedRoute,private router: Router) { }
+  constructor(public postService: PostService,public usersService: UsersService, private route: ActivatedRoute,private router: Router) { }
   // post={
   //   title:"Um Titulo bem bonito",
   //   image:"../../assets/img.jpeg",
@@ -20,6 +22,8 @@ export class PostPage implements OnInit {
   // }
   post={id:'',title:'',content:'',photos:'',date:''};
   dateFormatHelper;
+  userid;
+  isBlogger;
 
   getPost(id): void{
     this.postService.getPost(id).subscribe(
@@ -38,12 +42,33 @@ export class PostPage implements OnInit {
     );
   }
 
+  getUserId(){
+    this.usersService.getDetails().subscribe(
+      (res)=>{
+        console.log(res);
+        this.userid=res.success.id;
+    },
+    (error) => {
+      console.log(error);
+    });
+  }
+
+  canEdit(){
+    if (this.post != null && this.post.id==this.userid && this.isBlogger) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   back(){
     this.router.navigate([`feed`]);
   }
   editPost(){
-    console.log('indo para edição');
-    this.router.navigate([`edit-post/${this.post.id}`]);
+    if (this.canEdit()) {
+      console.log('indo para edição');
+      this.router.navigate([`edit-post/${this.post.id}`]);  
+    }
   }
   ngOnInit() {
 
