@@ -32,6 +32,13 @@ export class FeedPage {
       }
     );
   }
+  photoStandard(photo){
+    if(photo == null){
+      return "../../assets/img_post.png";
+    }else{
+      return `data:image/jpeg;base64,${photo}`;
+    }
+  }
   goToPost(id){
     console.log(`going to id:${id}`);
     this.router.navigate([`post/${id}`]);

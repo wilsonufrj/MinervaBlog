@@ -11,7 +11,7 @@
 
 <ion-content *ngIf="posts" [scrollEvents]="true">
   <ion-card *ngFor="let post of posts" (click)="goToPost(post.id)">
-      <img src="data:image/jpeg;base64,{{post.photos}}" alt="imagem do post" />
+      <img src="{{this.photoStandard(post.photo)}}" alt="imagem do post" />
       <ion-card-header>
         <!-- <ion-card-subtitle>{{post.date}}</ion-card-subtitle> -->
         <ion-card-title>{{post.title}}</ion-card-title>
