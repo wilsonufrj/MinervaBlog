@@ -13,14 +13,24 @@ h1{
     padding-left: 0.2em;
     padding-right: 0.2em;
     margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 .date{
     margin: 0;
     padding-left: 0.2em;
     padding-right: 0.2em;
+    font-family: 'Roboto', sans-serif;
 }
 .text{
     margin: 0;
     padding-left: 0.2em;
     padding-right: 0.2em;
+    font-family: 'Roboto', sans-serif;
+}
+ion-button{
+    --background:#FBAF3F;
+    --color: #07203F;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    
 }

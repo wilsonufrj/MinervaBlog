@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import {AlertController} from '@ionic/angular';
 
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -17,6 +18,7 @@ export class ProfilePage implements OnInit {
   profile;
   photos;
   profileForm: FormGroup;
+  user={id:'',name:'',email:'',username:'',photos:'',birthday:'',CEP:''};
   constructor(
     private camera:Camera, public formbuilder:FormBuilder, private router: Router, public usersService: UsersService, private route: ActivatedRoute, public alertController:AlertController
   ) 
@@ -33,6 +35,29 @@ export class ProfilePage implements OnInit {
       
     });
   }
+  // formartDateForm(){
+  //   let dateString = "22-04-2017"; //whatever date string u have
+  //   let dateObject = this.moment.format("DD-MM-YYYY");
+
+  // }
+
+  // parse(value: any): Date | null {
+  //   if ((typeof value === 'string') && (value.indexOf('/') > -1)) {
+  //     const str = value.split('/');
+
+  //     const year = Number(str[2]);
+  //     const month = Number(str[1]) - 1;
+  //     const date = Number(str[0]);
+
+  //     return new Date(year, month, date);
+  //   } else if((typeof value === 'string') && value === '') {
+  //     return new Date();
+  //   }
+  //   const timestamp = typeof value === 'number' ? value : Date.parse(value);
+  //   console.log(new Date(timestamp));
+  //   return isNaN(timestamp) ? null : new Date(timestamp);
+  // }
+
   formatDate(date){
     let helperDate = new Date(Date.parse(date));
     console.log(helperDate);
@@ -54,16 +79,17 @@ export class ProfilePage implements OnInit {
     this.usersService.getDetails().subscribe(
       (res)=>{
         console.log(res);
-        this.profileForm.value.id=res.success.id;
-        this.profileForm.value.name=res.success.name;
-        this.profileForm.value.username=res.success.username;
-        this.profileForm.value.email=res.success.email;
+        this.user.id=res.success.id;
+        this.user.name=res.success.name;
+        this.user.username=res.success.username;
+        this.user.email=res.success.email;
         // this.profileForm.value.password= res.success.password; //não muda nessa pagina
-        this.profileForm.value.photos= res.success.photos;
-        // this.profileForm.value.birthday = res.success.birthday; //erro de parse vai ter que formatar como iso eu acho
-        this.profileForm.value.CEP= res.success.CEP;
+        this.user.photos= res.success.photos;
+        this.user.birthday = res.success.birthday; 
+        this.user.CEP= res.success.CEP;
         console.log('form:');
         console.log(this.profileForm);
+        console.log(this.user);
     },
     (error) => {
       console.log(error);
@@ -139,6 +165,8 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
     this.getDetails();
+    // this.formartDateForm();
+    // this.parse('13/04/2000')
     // this.myPhoto='/assets/user.png';
   }
 
