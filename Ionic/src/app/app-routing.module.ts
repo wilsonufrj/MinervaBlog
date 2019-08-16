@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { UserGuard } from './guards/user.guard';
 
 
 const routes: Routes = [
@@ -16,7 +17,7 @@ const routes: Routes = [
   // },
   { path: 'post/:id', loadChildren: './post/post.module#PostPageModule' },
   { path: 'edit-post/:id', loadChildren: './edit-post/edit-post.module#EditPostPageModule' },  
-  { path: 'create-post', loadChildren: './create-post/create-post.module#CreatePostPageModule' },
+  { path: 'create-post', loadChildren: './create-post/create-post.module#CreatePostPageModule', canActivate: [UserGuard] },
 
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },

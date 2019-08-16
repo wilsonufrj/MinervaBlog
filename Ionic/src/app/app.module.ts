@@ -12,6 +12,7 @@ import { HttpClientModule,HttpClient,HttpHandler } from '@angular/common/http';
 
 import { PostService } from './services/post.service';
 import { UsersService } from './services/users.service';
+import { UserGuard } from './guards/user.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { UsersService } from './services/users.service';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     UsersService,
     PostService,
+    UserGuard
   ],
   bootstrap: [AppComponent]
 })
