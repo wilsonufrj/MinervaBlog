@@ -85,7 +85,7 @@ export class UsersService {
   getDetails(): Observable<any> {
 
   // this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken') mesmo motivo
-    return this.http.get( this.apiUrl + 'lget-details', this.httpHeaders );
+    return this.http.get( this.apiUrl + 'get-details', this.httpHeaders );
     
   }
 
