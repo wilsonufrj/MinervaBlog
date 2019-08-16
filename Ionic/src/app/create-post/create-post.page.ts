@@ -14,7 +14,7 @@ import { UsersService } from '../services/users.service';
 export class CreatePostPage implements OnInit {
   newPostForm:FormGroup;
   photos;
-  id;
+  userId;
 
   OpenGallery() {
     const options: CameraOptions = {
@@ -36,7 +36,8 @@ export class CreatePostPage implements OnInit {
 
   constructor(public formbuilder:FormBuilder, private router: Router,private camera: Camera,public postService: PostService,public usersService: UsersService) {
     this.newPostForm= this.formbuilder.group({
-      id: null,//atualizar para id do user
+      id: null,
+      user_id: [null, this.userId],// id do user
       photos: [null, this.photos],     
       title:[null, [Validators.required, Validators.minLength(10)]],
       content:[null, [Validators.required, Validators.minLength(10)]],
@@ -47,7 +48,7 @@ export class CreatePostPage implements OnInit {
     this.usersService.getDetails().subscribe(
       (res)=>{
         console.log(res);
-        this.id=res.success.id;
+        this.userId=res.success.id;
     },
     (error) => {
       console.log(error);
@@ -55,11 +56,15 @@ export class CreatePostPage implements OnInit {
   }
 
   onSubmit( form ) { 
-    console.log('posted item: ');
-    console.log(form.value);
+    
     if ( form.status == "VALID" ) {
-      form.value.photos=this.photos;
-      form.value.id=this.id;
+      if (this.photos != null){
+        form.value.photos=this.photos;
+      }
+      form.value.user_id=this.userId.toString();
+      console.log('user id enviado:'+form.value.user_id);
+      console.log('posted item: ');
+      console.log(form.value);
       this.postService.createPost( form.value ).subscribe(
         ( res ) => {
           console.log( res );

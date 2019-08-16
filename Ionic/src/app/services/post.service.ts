@@ -37,6 +37,7 @@ constructor(private http: HttpClient) { }
       title:post.title,
       content:post.content,
       photos:post.photos,
+      user_id:post.user_id,
     }
     return this.http.post(this.backendURL+'createPost',request,this.httpHeaders);
   }

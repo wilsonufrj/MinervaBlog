@@ -32,6 +32,7 @@ export class FeedPage {
       }
     );
   }
+  
   photoStandard(photo){
     if(photo == null){
       return "../../assets/img_post.png";

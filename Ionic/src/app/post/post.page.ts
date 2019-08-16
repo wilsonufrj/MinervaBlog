@@ -22,7 +22,8 @@ export class PostPage implements OnInit {
   // }
   post={id:'',title:'',content:'',photos:'',date:''};
   dateFormatHelper;
-  userid;
+  userId;
+  creatorId
   isBlogger;
 
   getPost(id): void{
@@ -30,6 +31,7 @@ export class PostPage implements OnInit {
       (res) => {
         console.log(res);
         this.post.id = res.data.id;
+        this.creatorId = res.data.user_id;
         this.post.title = res.data.title;
         this.post.content = res.data.content;
         this.post.photos = res.data.photos;
@@ -46,7 +48,8 @@ export class PostPage implements OnInit {
     this.usersService.getDetails().subscribe(
       (res)=>{
         console.log(res);
-        this.userid=res.success.id;
+        this.userId=res.success.id;
+        this.isBlogger = res.success.is_blogger;
     },
     (error) => {
       console.log(error);
@@ -54,10 +57,18 @@ export class PostPage implements OnInit {
   }
 
   canEdit(){
-    if (this.post != null && this.post.id==this.userid && this.isBlogger) {
+    if (this.creatorId==this.userId && this.isBlogger) {
       return true;
     } else {
       return false;
+    }
+  }
+
+  photoStandard(photo){
+    if(photo == null){
+      return "../../assets/img_post.png";
+    }else{
+      return `data:image/jpeg;base64,${photo}`;
     }
   }
 
@@ -70,6 +81,12 @@ export class PostPage implements OnInit {
       this.router.navigate([`edit-post/${this.post.id}`]);  
     }
   }
+  // debuga(){
+  //   console.log(this.canEdit());
+  //   console.log(this.userId  );
+  //   console.log( this.creatorId);
+  //   console.log( this.isBlogger);
+  // }
   ngOnInit() {
 
     this.route.params.subscribe(
@@ -78,6 +95,7 @@ export class PostPage implements OnInit {
         this.getPost(params['id']);
       }
     );
+    this.getUserId();
   }
 
 }

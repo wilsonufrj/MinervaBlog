@@ -16,7 +16,7 @@ const routes: Routes = [
   //   loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   // },
   { path: 'post/:id', loadChildren: './post/post.module#PostPageModule' },
-  { path: 'edit-post/:id', loadChildren: './edit-post/edit-post.module#EditPostPageModule' },  
+  { path: 'edit-post/:id', loadChildren: './edit-post/edit-post.module#EditPostPageModule', canActivate: [UserGuard] },  
   { path: 'create-post', loadChildren: './create-post/create-post.module#CreatePostPageModule', canActivate: [UserGuard] },
 
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },

@@ -22,8 +22,8 @@ export class AppComponent {
       icon: 'list'
     },
      {
-      title: 'Cadastro',
-      url: '/register',
+      title: 'Login',
+      url: '/login',
       icon: 'md-person'
     }
     

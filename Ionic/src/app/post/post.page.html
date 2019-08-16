@@ -12,7 +12,7 @@
 <ion-content [scrollEvents]="true">
     <ion-grid *ngIf="post" >
       <ion-row>
-        <img class="post-image" src="data:image/jpeg;base64,{{post.photos}}" alt="imagem do post" />
+        <img class="post-image" src="{{this.photoStandard(post.photo)}}" alt="imagem do post" />
       </ion-row>
       <ion-row>
         <ion-col>
@@ -33,11 +33,12 @@
         <ion-button (click)="back()" shape="round" >Voltar</ion-button>        
       </ion-row>
     </ion-grid>
-    <ion-fab vertical="top" horizontal="end" slot="fixed" **ngIf="canEdit()" (click)="editPost()" color="var(--ion-color-secondary)">
+    <ion-fab vertical="top" horizontal="end" slot="fixed" *ngIf="canEdit()" (click)="editPost()" color="var(--ion-color-secondary)">
         <ion-fab-button>
           <ion-icon name="create"></ion-icon>
         </ion-fab-button>
       </ion-fab>
+
 </ion-content>
 
 

@@ -15,7 +15,7 @@ export class UserGuard implements CanActivate {
   
     this.usersService.getDetails().subscribe(
       (res)=>{
-        this.is_blogger= res.data.is_blogger;
+        this.is_blogger= res.success.is_blogger;
         console.log(this.is_blogger);
     },
     (error) => {
@@ -53,8 +53,5 @@ export class UserGuard implements CanActivate {
         return false;
 
       }
-     
-
   }
-  
 }
